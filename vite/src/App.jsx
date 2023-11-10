@@ -7,6 +7,18 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
+//Redux
+import { useDispatch,useSelector, } from "react-redux";
+
+
+//Import all diiferenet componet views:
+import LandingView from './components/LandingView/LandingView';
+import NavView from './components/NavView/NavView';
+import ContactView from './components/ContactView/ContactView';
+import ProjectView from './components/ProjectView/ProjectView';
+import AboutMeView from './components/AboutMeView/AboutMeView';
+import MusicView from './components/MusicView/MusicView';
+
 
 const theme = createTheme({
   breakpoints: {
@@ -59,12 +71,21 @@ const theme = createTheme({
 function App() {
   const [count, setCount] = useState(0)
 
+  
+  const dispatch = useDispatch();
+  const setTest = () => {
+    dispatch({ type: 'SET_TEST', payload: 'Test is testing boiiiiii........' });
+    return;
+  }
+
+  const currentView = useSelector(store => store.testReducer);
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth={false} sx={{ padding:'0%', bgcolor: 'grey', height:'100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
         <Container sx={{ bgcolor: "", width:'100%', height: {mobile: '8%', tablet: '8%', laptop:'10%', desktop: '12%'}, paddingLeft: {mobile: '3%', tablet: '3%', laptop:'12%', desktop: '12%'}, paddingRight: {mobile: '5%', tablet: '5%', laptop:'12%', desktop: '12%'}, marginTop: {mobile: '5%', tablet: '5%', laptop:'3%', desktop: '2%'}}}>
           <Container sx={{ bgcolor: "", height: "100%", padding:'0%', display: 'flex', position: 'relative', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Button variant="contained" sx={{ height: "100%", aspectRatio: "1", padding: "3%" }}> <ArrowBackIcon/></Button>
+            <Button variant="contained" sx={{ height: "100%", aspectRatio: "1", padding: "3%" }} onClick={() => {console.log("button presed!", currentView); setTest()}}> <ArrowBackIcon/></Button>
             <Button variant="outlined" color="secondary" sx={{ height: "100%", aspectRatio: "1", padding: "3%" }}><MusicNoteIcon sx={{ color: "black" }} /></Button>
           </Container>
         </Container>
@@ -77,11 +98,3 @@ function App() {
 }
 
 export default App
-
-{/* <Container maxWidth={false} sx={{ bgcolor:"red", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "60%", padding: "5px", minWidth:"100%"}}> 
-<Button variant="contained" sx={{height:"50px", width: "50px", padding: "1px"}}> <ArrowBackIcon/></Button>
-<Button variant="outlined" color="secondary" sx={{height:"50px", width: "50px"}}><MusicNoteIcon sx={{color: "black"}}/></Button>
-</Container>
-<Container maxWidth={false} sx={{bgcolor:"", height: "175px", width: "100%", padding: "10px"}}> 
-<Paper sx={{ height: "100%", width: "100%", padding: "10px",}}>Click to Learn More</Paper>
-</Container> */}
