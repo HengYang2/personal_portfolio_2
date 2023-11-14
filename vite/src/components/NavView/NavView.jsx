@@ -34,7 +34,7 @@ export default function NavView() {
           <Paper sx={{ height: '100%', margin: '0%', padding: '3%' }}>THIS IS NAV VIEW</Paper>
         </Container>
       </Container>
-      <MenuUi></MenuUi>
+      {/* <MenuUi></MenuUi> */}
     </>
   )
 }
