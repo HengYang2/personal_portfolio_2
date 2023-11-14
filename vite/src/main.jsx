@@ -18,15 +18,15 @@ import { render } from 'react-dom'
 
 //Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(10, 6, 10);
+camera.position.set(15, 11, 15);
 
 //Scene - like a containter that holds all objects, cameras and lights
 const scene = new THREE.Scene();
 
 //Load background:
-const backgroundTexture = new THREE.TextureLoader().load('../public/skyPhoto1.jpg');
+const backgroundTexture = new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT682qf4vqnxcw_P0luBZR4XnlrOUHnltmt0A&usqp=CAU');
 scene.background = backgroundTexture;
-scene.backgroundIntensity = 0.3;
+scene.backgroundIntensity = 0.5;
 scene.backgroundBlurriness = 0.5;
 
 
@@ -103,6 +103,8 @@ gltfLoader.load('../public/bedroomMODIFIED2.gltf', (gltfscene) => {
   window.project3 = scene.getObjectByName("Scene").getObjectByName("project3");
   window.project4 = scene.getObjectByName("Scene").getObjectByName("project4");
   window.project5 = scene.getObjectByName("Scene").getObjectByName("project5");
+
+  gltfscene.scene.position.set(0,1,0)
 
 });
 

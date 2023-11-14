@@ -23,7 +23,7 @@ export default function NavView() {
 
   return (
     <>
-      <Container maxWidth={false} sx={{ padding: '0%', bgcolor: 'grey', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Container maxWidth={false} sx={{ padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents:'auto' }}>
         <Container sx={{ bgcolor: "", width: '100%', height: { mobile: '8%', tablet: '8%', laptop: '10%', desktop: '12%' }, paddingLeft: { mobile: '3%', tablet: '3%', laptop: '12%', desktop: '12%' }, paddingRight: { mobile: '5%', tablet: '5%', laptop: '12%', desktop: '12%' }, marginTop: { mobile: '5%', tablet: '5%', laptop: '3%', desktop: '2%' } }}>
           <Container sx={{ bgcolor: "", height: "100%", padding: '0%', display: 'flex', position: 'relative', flexDirection: 'row', justifyContent: 'space-between' }}>
             <Button variant="contained" sx={{ height: "100%", aspectRatio: "1", padding: "3%" }} onClick={() => { setViewState() }}> <ArrowBackIcon /></Button>
