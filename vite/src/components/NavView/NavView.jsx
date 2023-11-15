@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 
 //MUI
 import Container from '@mui/material/Container';
@@ -19,7 +20,6 @@ export default function NavView() {
     dispatch({ type: 'SET_VIEW_STATE', payload: 'landingView' });
     return;
   }
-
 
   return (
     <>

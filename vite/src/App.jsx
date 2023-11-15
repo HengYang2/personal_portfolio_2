@@ -19,15 +19,24 @@ import ProjectView from './components/ProjectView/ProjectView';
 import AboutMeView from './components/AboutMeView/AboutMeView';
 import MusicView from './components/MusicView/MusicView';
 
+const breakpoints = {
+  values: {
+    mobile: 0,
+    tablet: 640,
+    laptop: 1024,
+    desktop: 1200,
+  }
+};
 
 const theme = createTheme({
-  breakpoints: {
-    values: {
-      mobile: 0,
-      tablet: 640,
-      laptop: 1024,
-      desktop: 1200,
-    },
+  breakpoints,
+  typography: {
+    h1: {
+      fontSize: "1.5rem",
+      [`@media screen and (max-width: ${breakpoints.values.mobile}px)`]: {
+        fontSize: "0.2rem"
+      }
+    }
   },
   // palette: {
   //   background:{
