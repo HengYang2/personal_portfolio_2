@@ -77,14 +77,22 @@ const theme = createTheme({
   // }
 })
 
-function App() {
+function App(props) {
 
   const viewStateReducer = useSelector(store => store.viewStateReducer);
+  const isTweenFinishedReducer = useSelector( store => store.isTweenFinishedReducer);
 
   const renderCurrentView = () => {
+
+    //If tween is still playing, exit function:
+    if (isTweenFinishedReducer === false) {
+      return;
+    }
+
+    //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
       case 'landingView':
-        return <LandingView></LandingView>
+        return <LandingView target={props.target} camera={props.camera} scene={props.scene}></LandingView>
         break;
       case 'navView':
         return <NavView></NavView>

@@ -24,19 +24,34 @@ camera.position.set(15, 11, 15);
 const scene = new THREE.Scene();
 
 //Load background:
-const backgroundTexture = new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT682qf4vqnxcw_P0luBZR4XnlrOUHnltmt0A&usqp=CAU');
-scene.background = backgroundTexture;
-scene.backgroundIntensity = 0.5;
-scene.backgroundBlurriness = 0.5;
+// const backgroundTexture = new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT682qf4vqnxcw_P0luBZR4XnlrOUHnltmt0A&usqp=CAU');
+// scene.background = backgroundTexture;
+// scene.backgroundIntensity = 0.5;
+// scene.backgroundBlurriness = 0.5;
+const loader = new THREE.CubeTextureLoader();
+const texture = loader.load([
+  '../public/freeSkyBox.jpg',
+  '../public/freeSkyBox.jpg',
+  '../public/freeSkyBox.jpg',
+  '../public/freeSkyBox.jpg',
+  '../public/freeSkyBox.jpg',
+  '../public/freeSkyBox.jpg',
+]);
+
+scene.background = texture;
 
 
 //Renderer
-const renderer = new THREE.WebGLRenderer({
+const renderer = new THREE.WebGL1Renderer({
   canvas: document.querySelector('#bg'),
+  antialias: true,
+
 });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-// renderer.shadowMapEnabled = true;
+
+renderer.shadowMap.enabled = true;
+
 
 renderer.render(scene, camera);
 
@@ -50,23 +65,99 @@ scene.add(target)
 
 
 //Scene Lights:
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(0, 3, 0)
-pointLight.intensity = 2;
+const plIntensity = 1
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-ambientLight.intensity = 2;
+const spl1 = new THREE.PointLight(0xffffff);
+const spl1Helper = new THREE.PointLightHelper(spl1, 1)
+spl1.position.set(2.43, 5.6, 2.76)
+spl1.intensity = plIntensity;
+spl1.distance = 5;
+spl1.decay = 2;
+spl1.castShadow = true;
+spl1Helper.position.copy(spl1.position)
 
-const hemisphereLight = new THREE.HemisphereLight(0x87CEEB, 0x32CD32, 0.05);
+const pl2 = new THREE.PointLight(0xffffff);
+const pl2Helper = new THREE.PointLightHelper(pl2, 1)
+pl2.position.set(-2.43, 5.6, -2.76)
+pl2.intensity = plIntensity;
+pl2.distance = 5;
+pl2.decay = 2;
+pl2.castShadow = true;
+pl2Helper.position.copy(pl2.position)
 
-const directionalLight = new THREE.DirectionalLight(0xFFFF00, 0.25);
-directionalLight.position.set(0,15,-5);
-directionalLight.target.position.set(0,2,0);
+const pl3 = new THREE.PointLight(0xffffff);
+const pl3Helper = new THREE.PointLightHelper(pl3, 1)
+pl3.position.set(2.43, 5.6, -2.76)
+pl3.intensity = plIntensity;
+pl3.distance = 5;
+pl3.decay = 2;
+pl3.castShadow = true;
+pl3Helper.position.copy(pl3.position)
 
+const pl4 = new THREE.PointLight(0xffffff);
+const pl4Helper = new THREE.PointLightHelper(pl4, 1)
+pl4.position.set(-2.43, 5.56, 2.76)
+pl4.intensity = plIntensity;
+pl4.distance = 5;
+pl4.decay = 2;
+pl4.castShadow = true;
+pl4Helper.position.copy(pl4.position)
+
+
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.02);
+
+
+const hemisphereLight = new THREE.HemisphereLight(0xFFFFED, 0x004987, 0.5);
+
+const light = new THREE.DirectionalLight(0xFFFFFF, 2);
+const helper = new THREE.DirectionalLightHelper(light, 5);
+light.position.set(0, 4, 0);
+light.target.position.set(100,50,100);
+light.castShadow = true;
+light.shadow.bias = 0.01;
+light.shadow.mapSize.width = 2048;
+light.shadow.mapSize.height = 2048;
+light.shadow.camera.near = 1.0;
+light.shadow.camera.far = 500;
+light.shadow.camera.left = 200;
+light.shadow.camera.right = -200;
+light.shadow.camera.top = 200;
+light.shadow.camera.bottom = 200;
+helper.light
 
 
 //Add the light to the scene
-scene.add(pointLight, ambientLight, hemisphereLight, directionalLight);
+scene.add(light, ambientLight, hemisphereLight, spl1,   pl2,  pl3,  pl4  );
+
+//shadows
+// const frustrumSize = 80;
+// light.shadow.camera = new THREE.OrthographicCamera(
+//   -frustrumSize / 2,
+//   frustrumSize / 2,
+//   frustrumSize / 2,
+//   -frustrumSize / 2,
+//   1,
+//   80
+// )
+
+// light.shadow.mapSize.x = 2048;
+// light.shadow.mapSize.y = 2048;
+
+// const pars = {
+//   minFilter: THREE.NearestFilter,
+//   magFilter: THREE.NearestFilter,
+//   format: THREE.RGBAFormat
+// };
+
+// light.shadow.map = new THREE.WebGLRenderTarget(light.shadow.mapSize.x, this.light.shadow.mapSize.y, pars);
+
+// // Same position as LIGHT position.
+// light.shadow.camera.position.copy(light.position);
+// light.shadow.camera.lookAt(scene.position);
+// scene.add(light.shadow.camera);
+
+
 
 //Light helper shows where the light is and its position:
 // const lightHelper = new THREE.PointLightHelper(pointLight);
@@ -97,14 +188,15 @@ gltfLoader.load('../public/bedroomMODIFIED2.gltf', (gltfscene) => {
   window.magentaBook = scene.getObjectByName("Scene").getObjectByName("magentaBook");
   window.pinkBook = scene.getObjectByName("Scene").getObjectByName("pinkBook");
   window.cyanBook = scene.getObjectByName("Scene").getObjectByName("cyanBook");
- 
+
   window.project1 = scene.getObjectByName("Scene").getObjectByName("project1");
   window.project2 = scene.getObjectByName("Scene").getObjectByName("project2");
   window.project3 = scene.getObjectByName("Scene").getObjectByName("project3");
   window.project4 = scene.getObjectByName("Scene").getObjectByName("project4");
   window.project5 = scene.getObjectByName("Scene").getObjectByName("project5");
 
-  gltfscene.scene.position.set(0,1,0)
+  gltfscene.scene.position.set(0, 1, 0)
+  // gltfscene.scene.castShadow.valueOf(5)
 
 });
 
@@ -125,7 +217,7 @@ const animate = (t) => {
   renderer.render(scene, camera);
   // scene.getObjectByName("Scene").getObjectByName("Cube042").position.set(0,0,0);
   // console.log("window var", window.globalVariable);
-  
+
 }
 animate();
 
@@ -134,7 +226,7 @@ animate();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <App target={target} camera={camera} scene={scene} />
     </Provider>
   </React.StrictMode>,
 )

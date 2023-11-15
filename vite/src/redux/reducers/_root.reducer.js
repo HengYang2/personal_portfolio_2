@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import viewStateReducer from './viewStateReducer';
+import isTweenFinishedReducer from './isTweenFinishedReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -8,7 +9,8 @@ import viewStateReducer from './viewStateReducer';
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
-    viewStateReducer
+    viewStateReducer,
+    isTweenFinishedReducer,
 });
 
 export default rootReducer;
