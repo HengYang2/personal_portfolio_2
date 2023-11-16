@@ -23,22 +23,87 @@ camera.position.set(15, 11, 15);
 //Scene - like a containter that holds all objects, cameras and lights
 const scene = new THREE.Scene();
 
-//Load background:
+//Load background: //&************************************************************************************************************************************************************
+// const backgroundTexture = new THREE.TextureLoader().load('skyBox_bk.png', 'skyBox_ft.png', 'skyBox_dn.png', 'skyBox_lf.png', 'skyBox_rt.png', 'skyBox_up.png',);
+// scene.background = backgroundTexture;
+const materialArray = [];
+const texture_ft = new THREE.TextureLoader().load('skyBox_ft.png');
+const texture_bk = new THREE.TextureLoader().load('skyBox_bk.png');
+const texture_up = new THREE.TextureLoader().load('skyBox_up.png');
+const texture_dn = new THREE.TextureLoader().load('skyBox_dn.png');
+const texture_rt = new THREE.TextureLoader().load('skyBox_rt.png');
+const texture_lf = new THREE.TextureLoader().load('skyBox_lf.png');
+
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_ft}));
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_bk}));
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_up}));
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_dn}));
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_rt}));
+materialArray.push(new THREE.MeshBasicMaterial({map:texture_lf}));
+
+for (let i=0; i<6; i++) {
+  materialArray[i].side = THREE.BackSide;
+}
+
+let skyboxGeo = new THREE.BoxGeometry(1000,1000,1000)
+const skybox = new THREE.Mesh(skyboxGeo, materialArray);
+
+
+scene.add(skybox);
+
 // const backgroundTexture = new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT682qf4vqnxcw_P0luBZR4XnlrOUHnltmt0A&usqp=CAU');
 // scene.background = backgroundTexture;
 // scene.backgroundIntensity = 0.5;
 // scene.backgroundBlurriness = 0.5;
-const loader = new THREE.CubeTextureLoader();
-const texture = loader.load([
-  '../public/freeSkyBox.jpg',
-  '../public/freeSkyBox.jpg',
-  '../public/freeSkyBox.jpg',
-  '../public/freeSkyBox.jpg',
-  '../public/freeSkyBox.jpg',
-  '../public/freeSkyBox.jpg',
-]);
+// const loader = new THREE.CubeTextureLoader();
+// const texture = loader.load([
+//   '../public/skyBoxXPos.png',
+//   '../public/skyBoxXNeg.png',
+//   '../public/skyBoxYPos.png',
+//   '../public/skyBoxYNeg.png',
+//   '../public/skyBoxZPos.png',
+//   '../public/skyBoxZNeg.png',
+// ]);
+// const fileNames = ['../public/skyBox_bk.png', '../public/skyBox_dn.png', '../public/skyBox_ft.png', '../public/skyBox_lf.png', '../public/skyBox_rt.png', '../public/skyBox_up.png',];
 
-scene.background = texture;
+// function createPathStrings(filename) {
+//   const basePath = "../public/";
+//   const baseFilename = basePath + filename;
+//   const fileType = ".png";
+//   const sides = ["ft", "bk", "up", "dn", "rt", "lf"];
+//   const pathStings = sides.map(side => {
+//     return baseFilename + "_" + side + fileType;
+//   });
+
+//   return pathStings;
+// }
+
+
+// function createMaterialArray(filename) {
+//   const skyboxImagepaths = createPathStrings(filename);
+//   const materialArray = skyboxImagepaths.map(image => {
+//     let texture = new THREE.TextureLoader().load(image);
+
+//     return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide }); // <---
+//   });
+//   return materialArray;
+// }
+
+// const skyboxImage = 'skyBox';
+
+// function init() {
+
+//   const materialArray = createMaterialArray(skyboxImage);
+//   const skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
+//   const skybox = new THREE.Mesh(skyboxGeo, materialArray);
+//   scene.add(skybox);
+// }
+
+
+
+
+
+// scene.background = texture;
 
 
 //Renderer
@@ -60,7 +125,7 @@ renderer.render(scene, camera);
 
 //Target: 
 const target = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), new THREE.MeshStandardMaterial({ color: 0xFF6347, wireframe: false }).transparent = false)
-target.position.set(0, 2, 0)
+target.position.set(0, 3, 0)
 scene.add(target)
 
 
@@ -113,7 +178,7 @@ const hemisphereLight = new THREE.HemisphereLight(0xFFFFED, 0x004987, 0.5);
 const light = new THREE.DirectionalLight(0xFFFFFF, 2);
 const helper = new THREE.DirectionalLightHelper(light, 5);
 light.position.set(0, 4, 0);
-light.target.position.set(100,50,100);
+light.target.position.set(100, 50, 100);
 light.castShadow = true;
 light.shadow.bias = 0.01;
 light.shadow.mapSize.width = 2048;
@@ -128,7 +193,7 @@ helper.light
 
 
 //Add the light to the scene
-scene.add(light, ambientLight, hemisphereLight, spl1,   pl2,  pl3,  pl4  );
+scene.add(light, ambientLight, hemisphereLight, spl1, pl2, pl3, pl4);
 
 //shadows
 // const frustrumSize = 80;
@@ -169,7 +234,7 @@ scene.add(light, ambientLight, hemisphereLight, spl1,   pl2,  pl3,  pl4  );
 
 //Room Model:
 const gltfLoader = new GLTFLoader();
-gltfLoader.load('../public/bedroomMODIFIED2.gltf', (gltfscene) => {
+gltfLoader.load('/public/bedroomMODIFIED2.gltf', (gltfscene) => {
 
   scene.add(gltfscene.scene);
   console.log("gltfscene", scene.getObjectByName("Scene"));
