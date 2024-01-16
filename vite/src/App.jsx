@@ -86,7 +86,7 @@ const theme = createTheme({
 function App(props) {
 
   const viewStateReducer = useSelector(store => store.viewStateReducer);
-  const isTweenFinishedReducer = useSelector( store => store.isTweenFinishedReducer);
+  const isTweenFinishedReducer = useSelector(store => store.isTweenFinishedReducer);
 
   const renderCurrentView = () => {
 
@@ -100,7 +100,12 @@ function App(props) {
     //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
       case 'landingView':
-        return <LandingView target={props.target} camera={props.camera} scene={props.scene}></LandingView>
+        return(
+        <>
+          <NavBar></NavBar>
+          <LandingView target={props.target} camera={props.camera} scene={props.scene}></LandingView>
+        </>
+        )
         break;
       case 'navView':
         return <NavView></NavView>
@@ -126,8 +131,7 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar></NavBar>
-      <BlackSideBars></BlackSideBars>
+      {/* <BlackSideBars></BlackSideBars> */}
       {renderCurrentView()}
     </ThemeProvider>
   )

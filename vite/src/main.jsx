@@ -281,6 +281,7 @@ gltfLoader.load('/public/bedroomMODIFIED2.gltf', (gltfscene) => {
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 // controls.dampingFactor = 0.05;
+controls.enabled = false;
 
 
 //ensure tween is running
