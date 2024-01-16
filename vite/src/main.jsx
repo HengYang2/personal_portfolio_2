@@ -23,16 +23,25 @@ camera.position.set(15, 11, 15);
 //Scene - like a containter that holds all objects, cameras and lights
 const scene = new THREE.Scene();
 
+//For if I need it later
+// const texture_ft = new THREE.TextureLoader().load('skyBox_ft.png');
+// const texture_bk = new THREE.TextureLoader().load('skyBox_bk.png');
+// const texture_up = new THREE.TextureLoader().load('skyBox_up.png');
+// const texture_dn = new THREE.TextureLoader().load('skyBox_dn.png');
+// const texture_rt = new THREE.TextureLoader().load('skyBox_rt.png');
+// const texture_lf = new THREE.TextureLoader().load('skyBox_lf.png');
+
 //Load background: //&************************************************************************************************************************************************************
 // const backgroundTexture = new THREE.TextureLoader().load('skyBox_bk.png', 'skyBox_ft.png', 'skyBox_dn.png', 'skyBox_lf.png', 'skyBox_rt.png', 'skyBox_up.png',);
 // scene.background = backgroundTexture;
+const selectedImage = 'crystalImage.jpg';
 const materialArray = [];
-const texture_ft = new THREE.TextureLoader().load('skyBox_ft.png');
-const texture_bk = new THREE.TextureLoader().load('skyBox_bk.png');
-const texture_up = new THREE.TextureLoader().load('skyBox_up.png');
-const texture_dn = new THREE.TextureLoader().load('skyBox_dn.png');
-const texture_rt = new THREE.TextureLoader().load('skyBox_rt.png');
-const texture_lf = new THREE.TextureLoader().load('skyBox_lf.png');
+const texture_ft = new THREE.TextureLoader().load(selectedImage);
+const texture_bk = new THREE.TextureLoader().load(selectedImage);
+const texture_up = new THREE.TextureLoader().load(selectedImage);
+const texture_dn = new THREE.TextureLoader().load(selectedImage);
+const texture_rt = new THREE.TextureLoader().load(selectedImage);
+const texture_lf = new THREE.TextureLoader().load(selectedImage);
 
 materialArray.push(new THREE.MeshBasicMaterial({map:texture_ft}));
 materialArray.push(new THREE.MeshBasicMaterial({map:texture_bk}));
@@ -45,11 +54,12 @@ for (let i=0; i<6; i++) {
   materialArray[i].side = THREE.BackSide;
 }
 
-let skyboxGeo = new THREE.BoxGeometry(1000,1000,1000)
+let skyboxGeo = new THREE.BoxGeometry(300,300,300)
 const skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
-
 scene.add(skybox);
+scene.backgroundIntensity = 0;
+
 
 // const backgroundTexture = new THREE.TextureLoader().load('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT682qf4vqnxcw_P0luBZR4XnlrOUHnltmt0A&usqp=CAU');
 // scene.background = backgroundTexture;
