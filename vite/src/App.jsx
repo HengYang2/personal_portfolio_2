@@ -7,6 +7,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
+//Import NavBar component:
+import NavBar from './components/NavBar/NavBar';
+
+//Import BlackSideBars component (conditionally rendered based on screen size)
+import BlackSideBars from './components/BlackSideBars/BlackSideBars';
+
 //Redux
 import { useDispatch, useSelector, } from "react-redux";
 
@@ -43,38 +49,38 @@ const theme = createTheme({
   //     paper: '#000000'
   //   }
   // }
-  // palette: {
-  //   primary: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   secondary: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   error: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   warning: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   success: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  // }
+  palette: {
+    primary: {
+      main: '#ab7e4c',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    secondary: {
+      main: '#ffffff',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#000000',
+    },
+    error: {
+      main: '#00ffff',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    warning: {
+      main: '#01fe21',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    success: {
+      main: '#01fe21',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+  }
 })
 
 function App(props) {
@@ -88,6 +94,8 @@ function App(props) {
     if (isTweenFinishedReducer === false) {
       return;
     }
+
+
 
     //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
@@ -118,6 +126,8 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
+      <NavBar></NavBar>
+      <BlackSideBars></BlackSideBars>
       {renderCurrentView()}
     </ThemeProvider>
   )
