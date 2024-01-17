@@ -25,10 +25,10 @@ export default function NavBar() {
                     Heng's Room
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                    <Button color='secondary' variant='outlined' sx={{pointerEvents: 'none'}} onClick={() => {setViewState('AboutMe')}}>About Me</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('Projects')}}>Projects</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('GetInTouch')}}>Get In Touch</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('Music')}}>Music</Button>
+                    <Button color='secondary' variant='outlined' sx={{pointerEvents: 'none'}} onClick={() => {setViewState('aboutMeView')}}>About Me</Button>
+                    <Button color='secondary' variant='contained' onClick={() => {setViewState('projectView')}}>Projects</Button>
+                    <Button color='secondary' variant='contained' onClick={() => {setViewState('contactView')}}>Get In Touch</Button>
+                    <Button color='secondary' variant='contained' onClick={() => {setViewState('musicView')}}>Music</Button>
                 </Stack>
             </Toolbar>
         </AppBar>

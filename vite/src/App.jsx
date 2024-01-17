@@ -18,7 +18,6 @@ import { useDispatch, useSelector, } from "react-redux";
 
 
 //Import all diiferenet componet views:
-import LandingView from './components/LandingView/LandingView';
 import NavView from './components/NavView/NavView';
 import ContactView from './components/ContactView/ContactView';
 import ProjectView from './components/ProjectView/ProjectView';
@@ -99,11 +98,11 @@ function App(props) {
 
     //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
-      case 'landingView':
+      case 'aboutMeView':
         return(
         <>
           <NavBar></NavBar>
-          <LandingView target={props.target} camera={props.camera} scene={props.scene}></LandingView>
+          <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
         </>
         )
         break;
@@ -115,9 +114,6 @@ function App(props) {
         break;
       case 'projectView':
         return <ProjectView></ProjectView>
-        break;
-      case 'aboutMeView':
-        return <AboutMeView></AboutMeView>
         break;
       case 'musicView':
         return <MusicView></MusicView>
@@ -131,7 +127,7 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <BlackSideBars></BlackSideBars> */}
+      <BlackSideBars></BlackSideBars>
       {renderCurrentView()}
     </ThemeProvider>
   )
