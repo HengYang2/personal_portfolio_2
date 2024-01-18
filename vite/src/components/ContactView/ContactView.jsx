@@ -17,7 +17,6 @@ export default function ContactView() {
     return;
   }
 
-
   return (
     <Container maxWidth={false} sx={{ padding: '0%', bgcolor: 'grey', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <Container sx={{ bgcolor: "", width: '100%', height: { mobile: '8%', tablet: '8%', laptop: '10%', desktop: '12%' }, paddingLeft: { mobile: '3%', tablet: '3%', laptop: '12%', desktop: '12%' }, paddingRight: { mobile: '5%', tablet: '5%', laptop: '12%', desktop: '12%' }, marginTop: { mobile: '5%', tablet: '5%', laptop: '3%', desktop: '2%' } }}>

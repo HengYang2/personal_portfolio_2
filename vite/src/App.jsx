@@ -18,7 +18,6 @@ import { useDispatch, useSelector, } from "react-redux";
 
 
 //Import all diiferenet componet views:
-import NavView from './components/NavView/NavView';
 import ContactView from './components/ContactView/ContactView';
 import ProjectView from './components/ProjectView/ProjectView';
 import AboutMeView from './components/AboutMeView/AboutMeView';
@@ -106,24 +105,35 @@ function App(props) {
         </>
         )
         break;
-      case 'navView':
-        return <NavView></NavView>
-        break;
       case 'contactView':
-        return <ContactView></ContactView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <ContactView target={props.target} camera={props.camera} scene={props.scene}></ContactView>
+          </>
+          )
         break;
       case 'projectView':
-        return <ProjectView></ProjectView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <ProjectView target={props.target} camera={props.camera} scene={props.scene}></ProjectView>
+          </>
+          )
         break;
       case 'musicView':
-        return <MusicView></MusicView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <MusicView target={props.target} camera={props.camera} scene={props.scene}></MusicView>
+          </>
+          )
         break;
       default:
         return <h1>Something went wrong {":("}</h1>
         break;
     }
   }
-
 
   return (
     <ThemeProvider theme={theme}>
