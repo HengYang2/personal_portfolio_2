@@ -1,4 +1,4 @@
-const viewStateReducer = (state = 'landingView', action) => {
+const viewStateReducer = (state = 'aboutMeView', action) => {
     switch (action.type) {
         case 'SET_VIEW_STATE':
             return action.payload;

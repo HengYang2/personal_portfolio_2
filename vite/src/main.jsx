@@ -18,7 +18,7 @@ import { render } from 'react-dom'
 
 //Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(15, 11, 15);
+camera.position.set(-1.5, 4, 0);
 
 //Scene - like a containter that holds all objects, cameras and lights
 const scene = new THREE.Scene();
@@ -135,7 +135,7 @@ renderer.render(scene, camera);
 
 //Target: 
 const target = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), new THREE.MeshStandardMaterial({ color: 0xFF6347, wireframe: false }).transparent = false)
-target.position.set(0, 3, 0)
+target.position.set(-1.5, 3, -5)
 scene.add(target)
 
 
@@ -281,6 +281,7 @@ gltfLoader.load('/public/bedroomMODIFIED2.gltf', (gltfscene) => {
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 // controls.dampingFactor = 0.05;
+controls.enabled = false;
 
 
 //ensure tween is running

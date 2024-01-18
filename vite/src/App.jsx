@@ -7,13 +7,17 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
+//Import NavBar component:
+import NavBar from './components/NavBar/NavBar';
+
+//Import BlackSideBars component (conditionally rendered based on screen size)
+import BlackSideBars from './components/BlackSideBars/BlackSideBars';
+
 //Redux
 import { useDispatch, useSelector, } from "react-redux";
 
 
 //Import all diiferenet componet views:
-import LandingView from './components/LandingView/LandingView';
-import NavView from './components/NavView/NavView';
 import ContactView from './components/ContactView/ContactView';
 import ProjectView from './components/ProjectView/ProjectView';
 import AboutMeView from './components/AboutMeView/AboutMeView';
@@ -43,44 +47,44 @@ const theme = createTheme({
   //     paper: '#000000'
   //   }
   // }
-  // palette: {
-  //   primary: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   secondary: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   error: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   warning: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  //   success: {
-  //     main: '#01fe21',
-  //     light: '#01fe21',
-  //     dark: '#01fe21',
-  //     contrastText: '#01fe21',
-  //   },
-  // }
+  palette: {
+    primary: {
+      main: '#ab7e4c',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    secondary: {
+      main: '#ffffff',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#000000',
+    },
+    error: {
+      main: '#00ffff',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    warning: {
+      main: '#01fe21',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+    success: {
+      main: '#01fe21',
+      light: '#01fe21',
+      dark: '#01fe21',
+      contrastText: '#01fe21',
+    },
+  }
 })
 
 function App(props) {
 
   const viewStateReducer = useSelector(store => store.viewStateReducer);
-  const isTweenFinishedReducer = useSelector( store => store.isTweenFinishedReducer);
+  const isTweenFinishedReducer = useSelector(store => store.isTweenFinishedReducer);
 
   const renderCurrentView = () => {
 
@@ -89,25 +93,41 @@ function App(props) {
       return;
     }
 
+
+
     //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
-      case 'landingView':
-        return <LandingView target={props.target} camera={props.camera} scene={props.scene}></LandingView>
-        break;
-      case 'navView':
-        return <NavView></NavView>
+      case 'aboutMeView':
+        return(
+        <>
+          <NavBar></NavBar>
+          <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
+        </>
+        )
         break;
       case 'contactView':
-        return <ContactView></ContactView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <ContactView target={props.target} camera={props.camera} scene={props.scene}></ContactView>
+          </>
+          )
         break;
       case 'projectView':
-        return <ProjectView></ProjectView>
-        break;
-      case 'aboutMeView':
-        return <AboutMeView></AboutMeView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <ProjectView target={props.target} camera={props.camera} scene={props.scene}></ProjectView>
+          </>
+          )
         break;
       case 'musicView':
-        return <MusicView></MusicView>
+        return(
+          <>
+            <NavBar></NavBar>
+            <MusicView target={props.target} camera={props.camera} scene={props.scene}></MusicView>
+          </>
+          )
         break;
       default:
         return <h1>Something went wrong {":("}</h1>
@@ -115,9 +135,9 @@ function App(props) {
     }
   }
 
-
   return (
     <ThemeProvider theme={theme}>
+      <BlackSideBars></BlackSideBars>
       {renderCurrentView()}
     </ThemeProvider>
   )
