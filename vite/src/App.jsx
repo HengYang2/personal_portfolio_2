@@ -22,7 +22,7 @@ import { useDispatch, useSelector, } from "react-redux";
 //Import all diiferenet componet views:
 import ContactView from './components/ContactView/ContactView';
 import ProjectView from './components/ProjectView/ProjectView';
-import TechStackView from './components/ProjectView/TechStackView/TechStackView'
+import TechStackView from './components/TechStackView/TechStackView'
 import AboutMeView from './components/AboutMeView/AboutMeView';
 import MusicView from './components/MusicView/MusicView';
 

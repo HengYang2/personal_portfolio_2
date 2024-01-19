@@ -7,7 +7,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
-import cameraTween from '../../../tween/cameraTween';
+import cameraTween from '../../tween/cameraTween';
 
 import { useDispatch } from "react-redux";
 
