@@ -24,7 +24,7 @@ export default function ProjectView() {
       <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
         <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
           <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
-            <img src='../../../public/hengPicture.jpg' />
+            <img src='/hengPicture.jpg' />
             <Paper sx={{ position: 'absolute', marginBottom: '1%', padding: '0.25%' }}>
               <Typography variant='h1'>
                 Heng Yang
