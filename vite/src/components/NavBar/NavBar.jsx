@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
-import { Button, Typography } from '@mui/material/';
+import { Button, MenuList, MenuItem, Typography, ClickAwayListener } from '@mui/material/';
 import { AppBar, Toolbar, IconButton, Stack } from '@mui/material'
 import WaterDropSharpIcon from '@mui/icons-material/WaterDropSharp';
 import { useDispatch, useSelector } from "react-redux";
 
+import ProjectsMenu from './ProjectsMenu/ProjectsMenu'
+
 import cameraTween from '../../tween/cameraTween';
+import MouseTracker from '../MouseTracker/MouseTracker';
 
 export default function NavBar(props) {
 
@@ -45,7 +48,7 @@ export default function NavBar(props) {
                 </Typography>
                 <Stack direction='row' spacing={2}>
                     <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); }}>About Me</Button>
-                    <Button variant={isOutlined('projectView')} color='secondary' onClick={() => { setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished); }}>Projects</Button>
+                    <ProjectsMenu camera={props.camera} target={props.target} isOutlined={isOutlined()}/>
                     <Button variant={isOutlined('contactView')} color='secondary' onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); }}>Get In Touch</Button>
                     <Button variant={isOutlined('musicView')} color='secondary' onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); }}>Music</Button>
                 </Stack>

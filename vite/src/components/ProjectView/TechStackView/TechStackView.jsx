@@ -3,20 +3,19 @@ import React from 'react'
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
-
-import cameraTween from '../../tween/cameraTween';
+import cameraTween from '../../../tween/cameraTween';
 
 import { useDispatch } from "react-redux";
 
-export default function ProjectView(props) {
+export default function TechStackView(props) {
 
   const dispatch = useDispatch();
   const setViewState = (state) => {
-    dispatch({ type: 'SET_VIEW_STATE', payload: state });
+    dispatch({ type: 'SET_VIEW_STATE', payload: state});
     return;
   }
 
@@ -24,7 +23,6 @@ export default function ProjectView(props) {
   function setIsTweenFinished(bool) {
     dispatch({ type: 'SET_IS_TWEEN_FINISHED', payload: bool });
   }
-
 
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
@@ -42,7 +40,7 @@ export default function ProjectView(props) {
           </Paper>
         </Stack>
       </Paper>
-      <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
+      <Button sx={{height:'10%', aspectRatio:'1/1', bgcolor:'lightBlue', marginLeft:'60%', marginBottom:'33%' }} onClick={() => { setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{color:'black'}}></ArrowUpwardIcon></Button>
     </Container>
   )
 }
