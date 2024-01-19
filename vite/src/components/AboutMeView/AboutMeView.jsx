@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,12 +22,15 @@ import useTypingEffect from '../../hooks/typingEffect';
 
 //Import TextPopper
 import TextPopper from './TextPopper/TextPopper';
+import NextTextIndicator from './NextTextIndicator/NextTextIndicator';
 
 export default function AboutMeView(props) {
 
+  const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
+
   //UseState for toggling talking options:
-  const [questionsVisable, setQuestionsVisable] = useState(false)
-  const [textCollection, setTextCollection] = useState(responseModule(''));
+  const [questionsVisible, setQuestionsVisible] = useState(false)
+  const [textCollection, setTextCollection] = useState(responseModule(selectedQuestionReducer));
   const [collectionIndex, setCollectionIndex] = useState(0);
 
   //Continue text indicator and click blocker useStates:
@@ -35,14 +38,22 @@ export default function AboutMeView(props) {
   const [clickBlockerDiv, setClickBlockerDiv] = useState(false);
 
   //Text parameters:
-  const defaultTextSpeedValue = 10
+  const defaultTextSpeedValue = 25
   const spedUpTextSpeedValue = 0.0005
   const [textSpeed, setTextSpeed] = useState(defaultTextSpeedValue);
 
-  const text = useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisable, setClickBlockerDiv)
+  const text = useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisible, setClickBlockerDiv)
 
-  //IDk
-  const [selectedQuestion, setSelectedQuestion] = useState('')
+  //Whenever there is a change in the selectedQuestionReducer, the setTextCollection will get the new list of text to be generated based on the selectedQuestionReducer
+  useEffect(() => {
+    if (questionsVisible == false) {
+      setTextCollection(responseModule(selectedQuestionReducer))
+      setCollectionIndex(0)
+      setTextSpeed(defaultTextSpeedValue)
+    } else {
+      return
+    }
+  },[selectedQuestionReducer, questionsVisible])
 
 
   //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
@@ -61,36 +72,17 @@ export default function AboutMeView(props) {
     }
   }
 
-  //Conditionally render indicator to click the div (this appears after text finishes typing out):
-  function conditionalIndicator() {
-    return indicatorVisible ? <h2 className='bg-yellow-300 border border-black rounded-md w-16 h-8 text-xs absolute z-30 text-center ml-101 mt-102 animate-upDown1' onClick={() => { nextText(); }}>{'Click To Continue'}</h2> : <></>;
+
+  //Conditionally render the 'click to continue' button or the TextPopper component base on if more text needs to be generated or if the questions list needs to pop up.
+  function RenderIndicatorOrPopper() {
+    if (indicatorVisible == true) {
+      return <NextTextIndicator nextText={nextText} />
+    } else if (questionsVisible == true) {
+      return <TextPopper setQuestionsVisible={setQuestionsVisible}/>
+    } else {
+      return <></>
+    }
   }
-
-  //Conditionally render questions based on the questionsVisable useState:
-  function toggleQuestionsVisable() {
-    return questionsVisable ?
-      <div className='w-40 h-36 ml-90 mt-40 absolute flex flex-col justify-center gap-1 items-center'>
-        <div className='bg-blue-400 absolute w-full h-full border border-black rounded-md box-shadow animate-subtlePulse -z-1 opacity-70'></div>
-        <button className='text-option' id='option1' onClick={e => { setQuestionsVisable(false); setSelectedQuestion('option1'); setTextCollection(responseModule('option1')); setCollectionIndex(0); setTextSpeed(defaultTextSpeedValue); setClickBlockerDiv(false) }}>Who are you?</button>
-        <button className='text-option' id='option2' onClick={e => { setQuestionsVisable(false); setSelectedQuestion('option2'); setTextCollection(responseModule('option2')); setCollectionIndex(0); setTextSpeed(defaultTextSpeedValue); setClickBlockerDiv(false) }}>Where am I?</button>
-        <button className='text-option' id='option3' onClick={e => { setQuestionsVisable(false); setSelectedQuestion('option3'); setTextCollection(responseModule('option3')); setCollectionIndex(0); setTextSpeed(defaultTextSpeedValue); setClickBlockerDiv(false) }}>What do you do for fun?</button>
-      </div> :
-      <></>;
-  }
-
-  //Conditionally render clickBlockerDiv:
-  function clickBlocker() {
-    return clickBlockerDiv ? <div className='absolute ml-0 mt-0 bg-blue-600 w-full h-full z-50 opacity-0'></div> : <></>;
-  }
-
-  // {conditionalIndicator()}
-  // {toggleQuestionsVisable()}
-  // {clickBlocker()}
-
-  // <Container sx={{ bgcolor: 'red', width: '100%', height: '100%', padding: '1em', }} type="button" onClick={() => { nextText(); }} className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
-  //   <Typography sx={{ fontSize: '1.5em' }}>{text}</Typography>
-  //   {/* {conditionalIndicator()} */}
-  // </Container>
 
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
@@ -104,8 +96,11 @@ export default function AboutMeView(props) {
               </Typography>
             </Paper>
           </Paper>
-          <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', margin: '0%', padding:'0%'}}>
-            <TextPopper></TextPopper>
+          <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', margin: '0%', padding: '0%', position: 'relative' }}>
+            <Container onClick={()=>{nextText()}} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute'}} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
+              <Typography sx={{ fontSize: '1.5em' }}>{text}</Typography>
+            </Container>
+            <RenderIndicatorOrPopper></RenderIndicatorOrPopper>
           </Paper>
         </Stack>
       </Paper>
