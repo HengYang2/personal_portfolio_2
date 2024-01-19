@@ -100,7 +100,7 @@ function App(props) {
       case 'aboutMeView':
         return(
         <>
-          <NavBar></NavBar>
+          <NavBar target={props.target} camera={props.camera}></NavBar>
           <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
         </>
         )
@@ -108,7 +108,7 @@ function App(props) {
       case 'contactView':
         return(
           <>
-            <NavBar></NavBar>
+            <NavBar target={props.target} camera={props.camera}></NavBar>
             <ContactView target={props.target} camera={props.camera} scene={props.scene}></ContactView>
           </>
           )
@@ -116,7 +116,7 @@ function App(props) {
       case 'projectView':
         return(
           <>
-            <NavBar></NavBar>
+            <NavBar target={props.target} camera={props.camera}></NavBar>
             <ProjectView target={props.target} camera={props.camera} scene={props.scene}></ProjectView>
           </>
           )
@@ -124,7 +124,7 @@ function App(props) {
       case 'musicView':
         return(
           <>
-            <NavBar></NavBar>
+            <NavBar target={props.target} camera={props.camera}></NavBar>
             <MusicView target={props.target} camera={props.camera} scene={props.scene}></MusicView>
           </>
           )
