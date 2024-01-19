@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import { Button, Typography } from '@mui/material/';
 import { AppBar, Toolbar, IconButton, Stack } from '@mui/material'
 import WaterDropSharpIcon from '@mui/icons-material/WaterDropSharp';
@@ -16,7 +17,17 @@ export default function NavBar(props) {
         return;
     }
 
-    const isTweenFinishedReducer = useSelector(store => store.isTweenFinishedReducer)
+    const viewStateReducer = useSelector(store => store.viewStateReducer)
+    // const [isButtonPressedDown, setIsButtonPressedDown] = useState('')
+
+    //Function for chaning the 'outlined' varriant in the NavBar Buttons based on the value of the viewStateReducer.
+    const isOutlined = (buttonId) => {
+        if (buttonId == viewStateReducer) {
+            return 'outlined'
+        } else {
+            return 'contained'
+        }
+    }
 
     function setIsTweenFinished(bool) {
         dispatch({ type: 'SET_IS_TWEEN_FINISHED', payload: bool });
@@ -24,7 +35,7 @@ export default function NavBar(props) {
 
 
     return (
-        <AppBar postion='static' sx={{ height: '6%', maxWidth: '70%', marginRight: '15%', pointerEvents: 'auto'}}>
+        <AppBar postion='static' sx={{ height: '6%', maxWidth: '70%', marginRight: '15%', pointerEvents: 'auto' }}>
             <Toolbar sx={{ height: '100%', width: '100%', bgcolor: 'primary', }}>
                 <IconButton size='large' edge='start' color='white' aria-label='logo'>
                     <WaterDropSharpIcon />
@@ -33,10 +44,10 @@ export default function NavBar(props) {
                     Heng's Room
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                    <Button color='secondary' variant='outlined' sx={{}} onClick={() => {setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished);}}>About Me</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished);}}>Projects</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished);}}>Get In Touch</Button>
-                    <Button color='secondary' variant='contained' onClick={() => {setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished);}}>Music</Button>
+                    <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); }}>About Me</Button>
+                    <Button variant={isOutlined('projectView')} color='secondary' onClick={() => { setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished); }}>Projects</Button>
+                    <Button variant={isOutlined('contactView')} color='secondary' onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); }}>Get In Touch</Button>
+                    <Button variant={isOutlined('musicView')} color='secondary' onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); }}>Music</Button>
                 </Stack>
             </Toolbar>
         </AppBar>
