@@ -11,11 +11,28 @@ import MusicOffIcon from '@mui/icons-material/MusicOff';
 
 // import '@fontsource/roboto/300.css';
 
+
 //Camera Tween
 import cameraTween from '../../tween/cameraTween';
 
 
 export default function AboutMeView(props) {
+
+  //For cursor following:
+  window.addEventListener("mousemove", (event) => {
+
+    const cursor = document.getElementById("cursor");
+
+    if (cursor) {
+      console.log('coords', event.clientX + " + " + event.clientY)
+      const x = event.clientX;
+      const y = event.clientY;
+      cursor.style.left = x + 10 + "px";
+      cursor.style.top = y + "px";
+    } else {
+      return
+    }
+  })
 
   const isTweenFinishedReducer = useSelector(store => store.isTweenFinishedReducer);
 
@@ -85,20 +102,22 @@ export default function AboutMeView(props) {
   //       </Button>
   //     </Container>
 
+
+
+
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
       <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
-        <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start'}}>
-          <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center'}}>
-            <img src='/hengPicture.jpg'/>
-            <Paper sx={{position: 'absolute', marginBottom: '1%', padding: '0.25%'}}>
+        <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
+          <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
+            <img src='/hengPicture.jpg' />
+            <Paper sx={{ position: 'absolute', marginBottom: '1%', padding: '0.25%' }}>
               <Typography variant='h1'>
                 Heng Yang
               </Typography>
             </Paper>
           </Paper>
-          <Paper  variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', }}>
-
+          <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', }}>
           </Paper>
         </Stack>
       </Paper>

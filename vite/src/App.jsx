@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Container from '@mui/material/Container';
 import { Grid, Stack, Typography } from '@mui/material/';
 // import BoxSx from './components/BoxSx';
@@ -16,10 +16,13 @@ import BlackSideBars from './components/BlackSideBars/BlackSideBars';
 //Redux
 import { useDispatch, useSelector, } from "react-redux";
 
+//Import Mouse Tracker
+// import MouseTracker from './components/MouseTracker/MouseTracker';
 
 //Import all diiferenet componet views:
 import ContactView from './components/ContactView/ContactView';
 import ProjectView from './components/ProjectView/ProjectView';
+import TechStackView from './components/ProjectView/TechStackView/TechStackView'
 import AboutMeView from './components/AboutMeView/AboutMeView';
 import MusicView from './components/MusicView/MusicView';
 
@@ -94,40 +97,47 @@ function App(props) {
     }
 
 
-
     //Switch views based on viewStateReducer:
     switch (viewStateReducer) {
       case 'aboutMeView':
-        return(
-        <>
-          <NavBar target={props.target} camera={props.camera}></NavBar>
-          <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
-        </>
+        return (
+          <>
+            <NavBar target={props.target} camera={props.camera}></NavBar>
+            <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
+          </>
         )
         break;
       case 'contactView':
-        return(
+        return (
           <>
             <NavBar target={props.target} camera={props.camera}></NavBar>
             <ContactView target={props.target} camera={props.camera} scene={props.scene}></ContactView>
           </>
-          )
+        )
         break;
       case 'projectView':
-        return(
+        return (
           <>
             <NavBar target={props.target} camera={props.camera}></NavBar>
             <ProjectView target={props.target} camera={props.camera} scene={props.scene}></ProjectView>
           </>
-          )
+        )
+        break;
+      case 'techStackView':
+        return (
+          <>
+            <NavBar target={props.target} camera={props.camera}></NavBar>
+            <TechStackView target={props.target} camera={props.camera} scene={props.scene}></TechStackView>
+          </>
+        )
         break;
       case 'musicView':
-        return(
+        return (
           <>
             <NavBar target={props.target} camera={props.camera}></NavBar>
             <MusicView target={props.target} camera={props.camera} scene={props.scene}></MusicView>
           </>
-          )
+        )
         break;
       default:
         return <h1>Something went wrong {":("}</h1>
