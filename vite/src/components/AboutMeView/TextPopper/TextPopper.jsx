@@ -35,13 +35,13 @@ export default function TextPopper(props) {
             </Button>
             <Popper id="simple-popper" open={open} anchorEl={anchorEl} placement="top-end" sx={{ bgcolor: '', width: '10%', height: '40%', zIndex: '1000', marginBottom: '7%', position: 'absolute' }}>
                 <Paper sx={{ bgcolor: 'white', padding: '0.5em', width: '100%', height: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', gap: '0.5em', position: 'absolute' }}>
-                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('1'); props.setQuestionsVisible(false) }}>
+                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('AB1'); props.setQuestionsVisible(false) }}>
                         Who are you?
                     </Button>
-                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('2'); props.setQuestionsVisible(false) }}>
+                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('AB2'); props.setQuestionsVisible(false) }}>
                         Where am I?
                     </Button>
-                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('3'); props.setQuestionsVisible(false) }}>
+                    <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'lightBlue' }} onClick={() => { handleClose(); setSelectedQuestion('AB3'); props.setQuestionsVisible(false) }}>
                         What do you do for fun?
                     </Button>
                 </Paper>
