@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import { Box, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
-
 //import responseModule for recieving text data:
 import responseModule from '../../response/responseModule';
 
@@ -25,7 +24,10 @@ import useIsTweenFinished from '../../hooks/useIsTweenFinished';
 import useTypingEffect from '../../hooks/typingEffect';
 import cameraTween from '../../tween/cameraTween';
 import bookTween from '../../tween/bookTween';
+import useToolTip from '../../hooks/useToolTip';
 
+//Import BookDiv, to overlay ontop of the books so that they can be animated
+import BookDiv from './BookDiv/BookDiv';
 
 export default function TechStackView(props) {
 
@@ -34,9 +36,14 @@ export default function TechStackView(props) {
   const { setSelectedQuestion } = useSelectedQuestion();
   const { setIsTweenFinished } = useIsTweenFinished();
 
+  //Import tool tip helper, which handles mouseMoved event listeners to the window
+  //and also creates a div at the location of your cursor:
+  const { renderToolTip, setHoveredDiv } = useToolTip();
 
-  //UseState for book tween animations:
-  const [hoveredDiv, setHoveredDiv] = useState('');
+
+
+  const [clickBlockerDiv, setClickBlockerDiv] = useState(false)
+
 
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
@@ -47,7 +54,6 @@ export default function TechStackView(props) {
 
   //Continue text indicator and click blocker useStates:
   const [indicatorVisible, setIndicatorVisible] = useState(false);
-  const [clickBlockerDiv, setClickBlockerDiv] = useState(false);
 
   //Text parameters:
   const defaultTextSpeedValue = 25
@@ -75,15 +81,6 @@ export default function TechStackView(props) {
   };
 
 
-
-  const renderToolTip = () => {
-    if (hoveredDiv == '') {
-      return <div id="cursor"></div>
-    } else {
-      return <div id="cursor" style={toolTipStyles}>{hoveredDiv}</div>
-    }
-  }
-
   const handleMouseMove = _.debounce((event) => {
     const cursor = document.getElementById("cursor");
     if (cursor) {
@@ -107,16 +104,7 @@ export default function TechStackView(props) {
     } else {
       return
     }
-
-    //Event listner for mouse/ cursor position. 
-    //If the hovered Div =='', then remove the event listener for the mouse.
-    //If the hovered Div != '', then add the event listener for the mouse. 
-    if (hoveredDiv == '') {
-      window.removeEventListener("mousemove", handleMouseMove);
-    } else {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
-  }, [selectedQuestionReducer, questionsVisible, hoveredDiv])
+  }, [selectedQuestionReducer, questionsVisible])
 
 
 
@@ -148,63 +136,10 @@ export default function TechStackView(props) {
     }
   }
 
-  //Styles for the invisible bookshelf div
-  const divStyles1 = {
-    position: 'absolute',
-    marginBottom: '8%',
-    marginRight: '22%',
-    height: '25%',
-    width: '33%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '0%',
-    opacity: '0.5',
-    backgroundColor: '',
-    padding: '0%',
-    border: '0px solid darkblue',
-    borderRadius: '8px',
-    textAlign: 'center',
-    fontSize: '16px',
-  };
-
-  const divStyles2 = {
-    position: 'relative',
-    margin: '0%',
-    height: '100%',
-    flexGrow: '1',
-    opacity: '0.5',
-    backgroundColor: '',
-    padding: '',
-    border: '0px solid darkblue',
-    borderRadius: '8px',
-    textAlign: 'center',
-    fontSize: '16px',
-    zIndex: '1000'
-  };
-
-
-
-
   return (
     <>
       <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
-        <div style={divStyles1} onMouseEnter={(e) => { console.log('y coord', e.y); }}>
-          {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('REACT'); }} onMouseEnter={(e) => { bookTween(blueBook); setHoveredDiv('React'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('REDUX / SAGAS'); }} onMouseEnter={(e) => { bookTween(greenBook); setHoveredDiv('Redux / Sagas'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('JAVASCRIPT'); }} onMouseEnter={(e) => { bookTween(redBook); setHoveredDiv('Javascript'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('JQUERY'); }} onMouseEnter={(e) => { bookTween(yellowBook); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('NODE.JS'); }} onMouseEnter={(e) => { bookTween(orangeBook); setHoveredDiv('Node.js'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('GIT / GITHUB'); }} onMouseEnter={(e) => { bookTween(purpleBook); setHoveredDiv('Git / Github'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('SQL'); }} onMouseEnter={(e) => { bookTween(brownBook); setHoveredDiv('SQL'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('POSTGRES'); }} onMouseEnter={(e) => { bookTween(blackBook); setHoveredDiv('Postgres'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('HOSTINGER'); }} onMouseEnter={(e) => { bookTween(limeGreenBook); setHoveredDiv('Hostinger'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('AWS'); }} onMouseEnter={(e) => { bookTween(magentaBook); setHoveredDiv('AWS'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setQuestionsVisible(false); setSelectedQuestion('MATERIAL UI'); }} onMouseEnter={(e) => { bookTween(pinkBook); setHoveredDiv('Material UI'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-          <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('THREE.JS'); }} onMouseEnter={(e) => { bookTween(cyanBook); setHoveredDiv('Three.js'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
-        </div>
+        <BookDiv setQuestionsVisible={setQuestionsVisible} setSelectedQuestion={setSelectedQuestion} setHoveredDiv={setHoveredDiv} />
         <Paper variant='outlined' sx={{ bgcolor: 'lightBlue', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
           <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
             <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
