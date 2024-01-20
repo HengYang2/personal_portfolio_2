@@ -115,9 +115,9 @@ export default function TechStackView(props) {
     alignItems: 'center',
     gap: '0%',
     opacity: '0.5',
-    backgroundColor: 'lightblue',
+    backgroundColor: '',
     padding: '0%',
-    border: '1px solid darkblue',
+    border: '0px solid darkblue',
     borderRadius: '8px',
     textAlign: 'center',
     fontSize: '16px',
@@ -129,9 +129,9 @@ export default function TechStackView(props) {
     height: '100%',
     flexGrow: '1',
     opacity: '0.5',
-    backgroundColor: 'red',
+    backgroundColor: '',
     padding: '',
-    border: '1px solid darkblue',
+    border: '0px solid darkblue',
     borderRadius: '8px',
     textAlign: 'center',
     fontSize: '16px',
@@ -173,7 +173,7 @@ export default function TechStackView(props) {
           </Paper>
         </Stack>
       </Paper>
-      <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '33%' }} onClick={() => { setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
+      <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '33%' }} onClick={() => { setSelectedQuestion('PJ0');  setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
     </Container>
   )
 }

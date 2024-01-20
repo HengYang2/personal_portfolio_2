@@ -16,9 +16,10 @@ import responseModule from '../../response/responseModule';
 import useTypingEffect from '../../hooks/typingEffect';
 import TextPopper from '../AboutMeView/TextPopper/TextPopper';
 import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator';
 
 import cameraTween from '../../tween/cameraTween';
-
+import trophyTween from '../../tween/trophyTween';
 
 
 export default function ProjectView(props) {
@@ -29,6 +30,11 @@ export default function ProjectView(props) {
     return;
   }
 
+  //For dispatching which question the user selected to the selectedQuestionReducer
+  function setSelectedQuestion(state) {
+    dispatch({ type: 'SET_SELECTED_QUESTION', payload: state });
+    return;
+  }
 
   function setIsTweenFinished(bool) {
     dispatch({ type: 'SET_IS_TWEEN_FINISHED', payload: bool });
@@ -65,7 +71,7 @@ export default function ProjectView(props) {
   }, [selectedQuestionReducer, questionsVisible])
 
 
-  
+
   //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
   //If the user clicks the div while the text is still being generated, when the indicator isn't showing, it will increase the speed at which the text will be generated.
   function nextText() {
@@ -88,7 +94,7 @@ export default function ProjectView(props) {
     if (indicatorVisible == true) {
       return <NextTextIndicator nextText={nextText} />
     } else if (questionsVisible == true) {
-      return <TextPopper setQuestionsVisible={setQuestionsVisible}/>
+      return <EndTextIndicator />
     } else {
       return <></>
     }
@@ -115,7 +121,7 @@ export default function ProjectView(props) {
           </Paper>
         </Stack>
       </Paper>
-      <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
+      <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setSelectedQuestion('TS0'); setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
     </Container>
   )
 }
