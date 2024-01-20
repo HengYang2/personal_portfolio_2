@@ -10,6 +10,7 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
 import cameraTween from '../../tween/cameraTween';
+import bookTween from '../../tween/bookTween';
 
 //import responseModule
 import responseModule from '../../response/responseModule';
@@ -17,6 +18,7 @@ import responseModule from '../../response/responseModule';
 import useTypingEffect from '../../hooks/typingEffect';
 import TextPopper from '../AboutMeView/TextPopper/TextPopper';
 import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
 
 export default function TechStackView(props) {
 
@@ -26,11 +28,20 @@ export default function TechStackView(props) {
     return;
   }
 
+  //For dispatching which question the user selected to the selectedQuestionReducer
+  function setSelectedQuestion(state) {
+    dispatch({ type: 'SET_SELECTED_QUESTION', payload: state });
+    return;
+  }
+
 
   function setIsTweenFinished(bool) {
     dispatch({ type: 'SET_IS_TWEEN_FINISHED', payload: bool });
   }
 
+
+  //UseState for book tween animations:
+  const [hoveredDiv, setHoveredDiv] = useState('');
 
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
@@ -59,10 +70,10 @@ export default function TechStackView(props) {
     } else {
       return
     }
-  }, [selectedQuestionReducer, questionsVisible])
+  }, [selectedQuestionReducer, questionsVisible, hoveredDiv])
 
 
-  
+
   //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
   //If the user clicks the div while the text is still being generated, when the indicator isn't showing, it will increase the speed at which the text will be generated.
   function nextText() {
@@ -85,14 +96,65 @@ export default function TechStackView(props) {
     if (indicatorVisible == true) {
       return <NextTextIndicator nextText={nextText} />
     } else if (questionsVisible == true) {
-      return <TextPopper setQuestionsVisible={setQuestionsVisible}/>
+      return <EndTextIndicator />
     } else {
       return <></>
     }
   }
 
+  //Styles for the invisible bookshelf div
+  const divStyles1 = {
+    position: 'absolute',
+    marginBottom: '8%',
+    marginRight: '22%',
+    height: '25%',
+    width: '33%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '0%',
+    opacity: '0.5',
+    backgroundColor: 'lightblue',
+    padding: '0%',
+    border: '1px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+  };
+
+  const divStyles2 = {
+    position: 'relative',
+    margin: '0%',
+    height: '100%',
+    flexGrow: '1',
+    opacity: '0.5',
+    backgroundColor: 'red',
+    padding: '',
+    border: '1px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+    zIndex: '1000'
+  };
+
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
+      <div style={divStyles1}>
+        {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('REACT'); }} onMouseEnter={(e) => { bookTween(blueBook); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('REDUX / SAGAS'); }} onMouseEnter={(e) => { bookTween(greenBook); setHoveredDiv('Redux / Sagas'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('JAVASCRIPT'); }} onMouseEnter={(e) => { bookTween(redBook); setHoveredDiv('Javascript'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('JQUERY'); }} onMouseEnter={(e) => { bookTween(yellowBook); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('NODE.JS'); }} onMouseEnter={(e) => { bookTween(orangeBook); setHoveredDiv('Node.js'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('GIT / GITHUB'); }} onMouseEnter={(e) => { bookTween(purpleBook); setHoveredDiv('Git / Github'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('SQL'); }} onMouseEnter={(e) => { bookTween(brownBook); setHoveredDiv('SQL'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('POSTGRES'); }} onMouseEnter={(e) => { bookTween(blackBook); setHoveredDiv('Postgres'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('HOSTINGER'); }} onMouseEnter={(e) => { bookTween(limeGreenBook); setHoveredDiv('Hostinger'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('AWS'); }} onMouseEnter={(e) => { bookTween(magentaBook); setHoveredDiv('AWS'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setQuestionsVisible(false); setSelectedQuestion('MATERIAL UI'); }} onMouseEnter={(e) => { bookTween(pinkBook); setHoveredDiv('Material UI'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('THREE.JS'); }} onMouseEnter={(e) => { bookTween(cyanBook); setHoveredDiv('Three.js'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+      </div>
       <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
         <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
           <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
