@@ -15,8 +15,6 @@ const ProjectModal = (props) => {
     //Expecting an object with the project name, desc, URLlink, techstack, and imgPath
     const modalInformation = projectModalInfo(props.projectName)
 
-    const [hoveredDiv, setHoveredDiv] = useState('');
-
 
     const [open, setOpen] = useState(false);
 
@@ -67,7 +65,7 @@ const ProjectModal = (props) => {
 
     return (
         <div style={divContainerStyles}>
-            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
+            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); props.setHoveredDiv(modalInformation.name); }} onMouseLeave={(e) => { props.setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
             <Modal
                 open={open}
                 onClose={handleClose}
