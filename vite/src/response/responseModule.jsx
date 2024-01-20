@@ -49,7 +49,7 @@ export default function responseModule(selectedQuestion) {
 
 
         case 'TS0':
-            return (['This is my bookshelf. It contains most of the tech stacks that I use!', "Try hovering over each book for a cool animation! I'll even read some of them for you. "]);
+            return (['This is my bookshelf. It contains most of the tech stacks that I use!', "Try hovering over each book for a cool animation! Also try clicking on one, I'll even read it for you. "]);
         case 'REACT':
             return ([reactStory]);
         case 'REDUX / SAGAS':

@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 
 import trophyTween from '../../../tween/trophyTween'
@@ -17,12 +16,6 @@ const ProjectModal = (props) => {
     const modalInformation = projectModalInfo(props.projectName)
 
     const [hoveredDiv, setHoveredDiv] = useState('');
-
-    const dispatch = useDispatch();
-    function setSelectedProjectReducer(state) {
-        dispatch({ type: 'SET_SELECTED_PROJECT', payload: state });
-        return;
-    }
 
 
     const [open, setOpen] = useState(false);
@@ -74,7 +67,7 @@ const ProjectModal = (props) => {
 
     return (
         <div style={divContainerStyles}>
-            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }} onClick={() => { handleOpen(); setSelectedProjectReducer(props.projectName); }}></div>
+            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
             <Modal
                 open={open}
                 onClose={handleClose}
