@@ -91,38 +91,3 @@ export default function responseModule(selectedQuestion) {
             return (["hmm. i don't know what to say..........."]);
     }
 }
-
-// 1. "*React's Radiant Kingdom: A Tale of Web Sorcery\n- Summary: Embark on an epic journey through React's enchanted kingdom, where web sorcery shapes the destiny of realms.*"
-
-// 2. Sagas of Redux Realms: Mystic Adventures Unfold
-//    - Summary: Unveil the mystic adventures within the sagas of Redux realms, where the threads of fate are rewoven.
-
-// 3. The JavaScript Chronicles: Wizards of the Code Realm
-//    - Summary: Join wizards in "The JavaScript Chronicles," where ancient code spells shape the destiny of the code realm.
-
-// 4. Journey into Jquery: Whispers of Enchanted Elements
-//    - Summary: Hear the whispers of enchanted elements on a captivating journey into Jquery's mystical and responsive realms.
-
-// 5. Node.js Odyssey: Guardians of the Server Forest
-//    - Summary: Become a guardian of the server forest in the Node.js odyssey, where the power of backends shapes destinies.
-
-// 6. Git's Ancient Scrolls: Chronicles of GitHub Wizards
-//    - Summary: Uncover the ancient scrolls of Git, revealing the chronicles of GitHub wizards forging the future of repositories.
-
-// 7. SQL Sorcery: Quest for the Relational Crystal
-//    - Summary: Embark on a quest for the relational crystal in the realm of SQL sorcery, where databases unveil their magical powers.
-
-// 8. Postgres Pinnacle: Legends of the Open Source Citadel
-//    - Summary: Explore the open-source citadel and discover the legends of Postgres, where databases reach their pinnacle.
-
-// 9. Hostinger's Harmony: Secrets of the Hosting Elders
-//    - Summary: Enter Hostinger's realm of harmony and unveil the secrets guarded by hosting elders, shaping online landscapes.
-
-// 10. AWS Alchemy: Cloud Realms and Virtual Enchantments
-//     - Summary: Master the art of AWS alchemy, where cloud realms and virtual enchantments transform the digital landscape.
-
-// 11. Material UI Mosaic: Artifacts of the User Interface Realm
-//     - Summary: Immerse yourself in the Material UI mosaic, where artifacts of the user interface realm craft seamless and elegant experiences.
-
-// 12. Three.js Quest: A Journey through 3D Enchantments
-//     - Summary: Embark on a quest through 3D enchantments in the realm of Three.js, where visuals come to life in a mesmerizing journey.

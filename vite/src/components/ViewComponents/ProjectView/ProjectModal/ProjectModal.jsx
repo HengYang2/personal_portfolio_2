@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Button, Modal, Box, Typography, Container} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-import trophyTween from '../../../tween/trophyTween'
+import trophyTween from '../../../../tween/trophyTween'
 
-import projectModalInfo from '../projectModalInfo/projectModalInfo';
+import projectModalInfo from '../../../../data/projectModalInfo';
 
 //Import div styles:
-import styles from '../../../styles/styles'
+import styles from '../../../../styles/styles'
 
 const ProjectModal = (props) => {
 

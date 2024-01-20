@@ -1,27 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
+import styles from '../styles/styles';
+
 const useTooltip = () => {
   const [hoveredDiv, setHoveredDiv] = useState('');
 
-  const toolTipStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    margin: '0%',
-    height: '5em',
-    aspectRatio: '1.5/1',
-    opacity: '0.9',
-    backgroundColor: 'white',
-    padding: '1em',
-    border: '1px solid darkblue',
-    borderRadius: '8px',
-    textAlign: 'center',
-    fontSize: '16px',
-    zIndex: '1000'
-  };
+  //Styles for the toolTipDiv:
+  const toolTipStyles = styles.toolTipStyles;
+
 
   const renderToolTip = () => {
     if (hoveredDiv === '') {
@@ -38,17 +25,21 @@ const useTooltip = () => {
         //Cursor location
         const x = event.clientX;
         const y = event.clientY;
+        console.log('xy coords:', x, y);
 
         //Spawn the 'cursor div' at the location of the cursor
-        cursor.style.left = x + 10 + "px";
-        cursor.style.top = y + "px";
+        cursor.style.position = 'absolute';
+        cursor.style.left = x + 5 + "px";
+        cursor.style.top = y + 7 + "px";
       }
-    }, 9305); //For debouncing purposes
+    },0.12); //For debouncing purposes
 
+    console.log('event listener added');
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       // Cleanup event listener on component unmount
+      console.log('event listener removed');
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []); // Empty dependency array ensures the effect runs only once (on mount)

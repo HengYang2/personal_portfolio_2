@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import bookTween from '../../../tween/bookTween'
+import bookTween from '../../../../tween/bookTween'
 
 //Import div styles:
-import styles from '../../../styles/styles'
+import styles from '../../../../styles/styles'
 
 const BookDiv = (props) => {
 

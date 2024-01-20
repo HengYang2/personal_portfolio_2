@@ -1,35 +1,33 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
-import _ from 'lodash';
 
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+
 
 //import responseModule for recieving text data:
-import responseModule from '../../response/responseModule';
+import responseModule from '../../../data/responseModule';
 
 //Import text components to be conditionally rendered based on if there is more text
 //to be read, or if there is non text left, or if there is the option for you to ask a question:
-import TextPopper from '../AboutMeView/TextPopper/TextPopper';
-import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
-import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
+import NextTextIndicator from '../../DialogComponents/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../../DialogComponents/EndTextIndicator/EndTextIndicator';
 
 //Import hooks:
-import useViewState from '../../hooks/useViewState';
-import useSelectedQuestion from '../../hooks/useSelectedQuestion';
-import useIsTweenFinished from '../../hooks/useIsTweenFinished';
-import useTypingEffect from '../../hooks/typingEffect';
-import cameraTween from '../../tween/cameraTween';
-import bookTween from '../../tween/bookTween';
-import useToolTip from '../../hooks/useToolTip';
+import useViewState from '../../../hooks/useViewState';
+import useSelectedQuestion from '../../../hooks/useSelectedQuestion';
+import useIsTweenFinished from '../../../hooks/useIsTweenFinished';
+import useTypingEffect from '../../../hooks/typingEffect';
+import cameraTween from '../../../tween/cameraTween';
+import useToolTip from '../../../hooks/useToolTip';
 
-//Import BookDiv, to overlay ontop of the books so that they can be animated
-import BookDiv from './BookDiv/BookDiv';
+//Import project modal to popup with project information:
+import ProjectModal from './ProjectModal/ProjectModal';
 
-export default function TechStackView(props) {
+export default function ProjectView(props) {
 
   //Imported dispatch functions:
   const { setViewState } = useViewState();
@@ -41,10 +39,6 @@ export default function TechStackView(props) {
   const { renderToolTip, setHoveredDiv } = useToolTip();
 
 
-
-  const [clickBlockerDiv, setClickBlockerDiv] = useState(false)
-
-
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   //UseState for toggling talking options:
@@ -54,6 +48,7 @@ export default function TechStackView(props) {
 
   //Continue text indicator and click blocker useStates:
   const [indicatorVisible, setIndicatorVisible] = useState(false);
+  const [clickBlockerDiv, setClickBlockerDiv] = useState(false);
 
   //Text parameters:
   const defaultTextSpeedValue = 25
@@ -61,39 +56,6 @@ export default function TechStackView(props) {
   const [textSpeed, setTextSpeed] = useState(defaultTextSpeedValue);
 
   const text = useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisible, setClickBlockerDiv)
-  const toolTipStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    margin: '0%',
-    height: '5em',
-    aspectRatio: '1.5/1',
-    opacity: '0.9',
-    backgroundColor: 'white',
-    padding: '1em',
-    border: '1px solid darkblue',
-    borderRadius: '8px',
-    textAlign: 'center',
-    fontSize: '16px',
-    zIndex: '1000'
-  };
-
-
-  const handleMouseMove = _.debounce((event) => {
-    const cursor = document.getElementById("cursor");
-    if (cursor) {
-      // console.log('coords', event.clientX + " + " + event.clientY)
-      const x = event.clientX;
-      const y = event.clientY;
-      cursor.style.left = x + 10 + "px";
-      cursor.style.top = y + "px";
-    } else {
-      return
-    }
-  }, 9305); // Adjust the debounce delay as needed
-
 
   //Whenever there is a change in the selectedQuestionReducer, the setTextCollection will get the new list of text to be generated based on the selectedQuestionReducer
   useEffect(() => {
@@ -136,11 +98,63 @@ export default function TechStackView(props) {
     }
   }
 
+  //Styles for the invisible trophy div
+  const divStyles1 = {
+    position: 'absolute',
+    marginBottom: '10%',
+    height: '40%',
+    width: '60%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    gap: '0%',
+    opacity: '1',
+    backgroundColor: '',
+    padding: '0%',
+    border: '0px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+  };
+
+
+  const toolTipStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    margin: '0%',
+    height: '5em',
+    aspectRatio: '1.5/1',
+    opacity: '0.9',
+    backgroundColor: 'white',
+    padding: '1em',
+    border: '1px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+    zIndex: '1000'
+  };
+
+  // <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT2'); }} onMouseEnter={(e) => { trophyTween(project2); setHoveredDiv('Redux / Sagas'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+  // <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT3'); }} onMouseEnter={(e) => { trophyTween(project3); setHoveredDiv('Javascript'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+  // <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT4'); }} onMouseEnter={(e) => { trophyTween(project4); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+  // <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT5'); }} onMouseEnter={(e) => { trophyTween(project5); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+
   return (
     <>
       <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
-        <BookDiv setQuestionsVisible={setQuestionsVisible} setSelectedQuestion={setSelectedQuestion} setHoveredDiv={setHoveredDiv} />
-        <Paper variant='outlined' sx={{ bgcolor: 'lightBlue', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
+        <div style={divStyles1}>
+          {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
+          <ProjectModal selectedProject={project1} projectName={'PROJECT1'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project2} projectName={'PROJECT2'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project3} projectName={'PROJECT3'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project4} projectName={'PROJECT4'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project5} projectName={'PROJECT5'} setHoveredDiv={setHoveredDiv} />
+        </div>
+        <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
           <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
             <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>
               <img src='/hengPicture.jpg' />
@@ -158,7 +172,7 @@ export default function TechStackView(props) {
             </Paper>
           </Stack>
         </Paper>
-        <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '33%' }} onClick={() => { setSelectedQuestion('PJ0'); setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
+        <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setSelectedQuestion('TS0'); setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
       </Container>
       {renderToolTip()}
     </>

@@ -7,11 +7,16 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MusicOffIcon from '@mui/icons-material/MusicOff';
 
-//Import NavBar component:
-import NavBar from './components/NavBar/NavBar';
+//Import BaseComponents:
+import NavBar from './components/BaseComponents/NavBar/NavBar';
+import BlackSideBars from './components/BaseComponents/BlackSideBars/BlackSideBars';
 
-//Import BlackSideBars component (conditionally rendered based on screen size)
-import BlackSideBars from './components/BlackSideBars/BlackSideBars';
+//Import all diiferenet ViewComponents:
+import ContactView from './components/ViewComponents/ContactView/ContactView';
+import AboutMeView from './components/ViewComponents/AboutMeView/AboutMeView';
+import MusicView from './components/ViewComponents/MusicView/MusicView';
+import TechStackView from './components/ViewComponents/TechStackView/TechStackView';
+import ProjectView from './components/ViewComponents/ProjectView/ProjectView';
 
 //Redux
 import { useDispatch, useSelector, } from "react-redux";
@@ -19,12 +24,7 @@ import { useDispatch, useSelector, } from "react-redux";
 //Import Mouse Tracker
 // import MouseTracker from './components/MouseTracker/MouseTracker';
 
-//Import all diiferenet componet views:
-import ContactView from './components/ContactView/ContactView';
-import ProjectView from './components/ProjectView/ProjectView';
-import TechStackView from './components/TechStackView/TechStackView'
-import AboutMeView from './components/AboutMeView/AboutMeView';
-import MusicView from './components/MusicView/MusicView';
+
 
 const breakpoints = {
   values: {

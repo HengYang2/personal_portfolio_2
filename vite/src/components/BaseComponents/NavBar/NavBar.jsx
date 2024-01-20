@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ProjectsMenu from './ProjectsMenu/ProjectsMenu'
 
-import cameraTween from '../../tween/cameraTween';
+import cameraTween from '../../../tween/cameraTween';
 
 export default function NavBar(props) {
 

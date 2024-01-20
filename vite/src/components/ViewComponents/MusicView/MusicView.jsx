@@ -7,16 +7,16 @@ import Container from '@mui/material/Container';
 import { Box, Popper, Fade, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 
 //import responseModule for recieving text data:
-import responseModule from '../../response/responseModule';
+import responseModule from '../../../data/responseModule';
 
 //Import text components to be conditionally rendered based on if there is more text
 //to be read, or if there is non text left, or if there is the option for you to ask a question:
-import TextPopper from '../AboutMeView/TextPopper/TextPopper';
-import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
-import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
+import TextPopper from '../../DialogComponents/TextPopper/TextPopper';
+import NextTextIndicator from '../../DialogComponents/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../../DialogComponents/EndTextIndicator/EndTextIndicator'
 
 //Import hooks:
-import useTypingEffect from '../../hooks/typingEffect';
+import useTypingEffect from '../../../hooks/typingEffect';
 
 
 export default function MusicView() {

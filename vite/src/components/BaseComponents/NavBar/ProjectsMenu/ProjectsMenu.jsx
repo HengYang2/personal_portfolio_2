@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from "react-redux";
 
-import cameraTween from '../../../tween/cameraTween';
+import cameraTween from '../../../../tween/cameraTween';
 
 const DropdownMenu = (props) => {
 
