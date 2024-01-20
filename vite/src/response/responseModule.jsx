@@ -27,7 +27,7 @@ export default function responseModule(selectedQuestion) {
         case 'AB3':
             return (["My name is Heng Yang, I'm a software developer who enjoys creating games, making music, and any kind of creative expression :^)", "I like building things, for example this world you see here! I guess you can say that you're looking into a part of my mind right now!", 'Do you have any other questions?']);
         case 'AB4':
-            return (["What else did you want to know?"]);
+            return (["How may I help you?"]);
 
 
         case 'PJ0':
