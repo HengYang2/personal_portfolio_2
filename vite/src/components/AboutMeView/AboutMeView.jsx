@@ -5,15 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Popper, Fade, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import MusicOffIcon from '@mui/icons-material/MusicOff';
 
-// import '@fontsource/roboto/300.css';
-
-
-//Camera Tween
-import cameraTween from '../../tween/cameraTween';
 
 //import responseModule
 import responseModule from '../../response/responseModule';

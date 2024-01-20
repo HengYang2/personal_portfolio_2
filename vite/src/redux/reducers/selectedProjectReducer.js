@@ -1,12 +1,12 @@
 import React from 'react'
 
-const selectedQuestionReducer = (state = 'AB0', action) => {
+const selectedProjectReducer = (state = 'PROJECT1', action) => {
     switch (action.type) {
-        case 'SET_SELECTED_QUESTION':
+        case 'SET_SELECTED_PROJECT':
             return action.payload;
         default:
             return state;
     }
 };
 
-export default selectedQuestionReducer;
+export default selectedProjectReducer;

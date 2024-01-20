@@ -20,6 +20,13 @@ export default function NavBar(props) {
         return;
     }
 
+    //For dispatching which question the user selected to the selectedQuestionReducer
+    function setSelectedQuestion(state) {
+        dispatch({ type: 'SET_SELECTED_QUESTION', payload: state });
+        return;
+    }
+
+
     const viewStateReducer = useSelector(store => store.viewStateReducer)
     // const [isButtonPressedDown, setIsButtonPressedDown] = useState('')
 
@@ -47,10 +54,10 @@ export default function NavBar(props) {
                     Heng's Room
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                    <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); }}>About Me</Button>
-                    <ProjectsMenu camera={props.camera} target={props.target} isOutlined={isOutlined()}/>
-                    <Button variant={isOutlined('contactView')} color='secondary' onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); }}>Get In Touch</Button>
-                    <Button variant={isOutlined('musicView')} color='secondary' onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); }}>Music</Button>
+                    <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); setSelectedQuestion('AB4'); }}>About Me</Button>
+                    <ProjectsMenu camera={props.camera} target={props.target} isOutlined={isOutlined()} />
+                    <Button variant={isOutlined('contactView')} color='secondary' onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setSelectedQuestion('GIT0'); }}>Get In Touch</Button>
+                    <Button variant={isOutlined('musicView')} color='secondary' onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); setSelectedQuestion('M0'); }}>Music</Button>
                 </Stack>
             </Toolbar>
         </AppBar>
