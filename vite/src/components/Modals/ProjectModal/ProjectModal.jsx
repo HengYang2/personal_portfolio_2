@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import { Button, Modal, Box, Typography, Container} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import trophyTween from '../../../tween/trophyTween'
-import { Container } from '@mui/material';
 
 import projectModalInfo from '../projectModalInfo/projectModalInfo';
 
@@ -15,15 +10,6 @@ const ProjectModal = (props) => {
 
     //Expecting an object with the project name, desc, URLlink, techstack, and imgPath
     const modalInformation = projectModalInfo(props.projectName)
-
-    const [hoveredDiv, setHoveredDiv] = useState('');
-
-    const dispatch = useDispatch();
-    function setSelectedProjectReducer(state) {
-        dispatch({ type: 'SET_SELECTED_PROJECT', payload: state });
-        return;
-    }
-
 
     const [open, setOpen] = useState(false);
 
@@ -74,7 +60,7 @@ const ProjectModal = (props) => {
 
     return (
         <div style={divContainerStyles}>
-            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }} onClick={() => { handleOpen(); setSelectedProjectReducer(props.projectName); }}></div>
+            <div style={activeDivStyle} onMouseEnter={(e) => { trophyTween(props.selectedProject); props.setHoveredDiv(modalInformation.name); }} onMouseLeave={(e) => { props.setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
             <Modal
                 open={open}
                 onClose={handleClose}

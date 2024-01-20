@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ProjectsMenu from './ProjectsMenu/ProjectsMenu'
 
 import cameraTween from '../../tween/cameraTween';
-import MouseTracker from '../MouseTracker/MouseTracker';
 
 export default function NavBar(props) {
 
