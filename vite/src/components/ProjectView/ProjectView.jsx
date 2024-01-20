@@ -1,49 +1,41 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import MusicOffIcon from '@mui/icons-material/MusicOff';
 
 
-//import responseModule
+//import responseModule for recieving text data:
 import responseModule from '../../response/responseModule';
-//Import useTypingEffect
-import useTypingEffect from '../../hooks/typingEffect';
-import TextPopper from '../AboutMeView/TextPopper/TextPopper';
-import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
-import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator';
 
+//Import text components to be conditionally rendered based on if there is more text
+//to be read, or if there is non text left, or if there is the option for you to ask a question:
+import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
+
+//Import hooks:
+import useViewState from '../../hooks/useViewState';
+import useSelectedQuestion from '../../hooks/useSelectedQuestion';
+import useIsTweenFinished from '../../hooks/useIsTweenFinished';
+import useTypingEffect from '../../hooks/typingEffect';
 import cameraTween from '../../tween/cameraTween';
 
+//Import project modal to popup with project information:
 import ProjectModal from '../Modals/ProjectModal/ProjectModal'
 
 
 export default function ProjectView(props) {
 
-  const dispatch = useDispatch();
-  const setViewState = (state) => {
-    dispatch({ type: 'SET_VIEW_STATE', payload: state });
-    return;
-  }
-
-  //For dispatching which question the user selected to the selectedQuestionReducer
-  function setSelectedQuestion(state) {
-    dispatch({ type: 'SET_SELECTED_QUESTION', payload: state });
-    return;
-  }
-
-  function setIsTweenFinished(bool) {
-    dispatch({ type: 'SET_IS_TWEEN_FINISHED', payload: bool });
-  }
+  //Imported dispatch functions:
+  const { setViewState } = useViewState();
+  const { setSelectedQuestion } = useSelectedQuestion();
+  const { setIsTweenFinished } = useIsTweenFinished();
 
   const [hoveredDiv, setHoveredDiv] = useState('');
-
-
+  
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   //UseState for toggling talking options:

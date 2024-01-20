@@ -6,13 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Container from '@mui/material/Container';
 import { Box, Popper, Fade, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 
-//import responseModule
+//import responseModule for recieving text data:
 import responseModule from '../../response/responseModule';
 
-//Import useTypingEffect
-import useTypingEffect from '../../hooks/typingEffect';
+//Import text components to be conditionally rendered based on if there is more text
+//to be read, or if there is non text left, or if there is the option for you to ask a question:
 import TextPopper from '../AboutMeView/TextPopper/TextPopper';
 import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
+
+
+//Import hooks:
+import useViewState from '../../hooks/useViewState';
+import useSelectedQuestion from '../../hooks/useSelectedQuestion';
+import useIsTweenFinished from '../../hooks/useIsTweenFinished';
+import useTypingEffect from '../../hooks/typingEffect';
+import cameraTween from '../../tween/cameraTween';
+
+
 
 export default function ContactView() {
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)

@@ -1,23 +1,27 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Popper, Fade, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 
-//import responseModule
+//import responseModule for recieving text data:
 import responseModule from '../../response/responseModule';
 
-//Import useTypingEffect
-import useTypingEffect from '../../hooks/typingEffect';
+//Import text components to be conditionally rendered based on if there is more text
+//to be read, or if there is non text left, or if there is the option for you to ask a question:
 import TextPopper from '../AboutMeView/TextPopper/TextPopper';
 import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
+
+//Import hooks:
+import useTypingEffect from '../../hooks/typingEffect';
 
 
 export default function MusicView() {
 
-    const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
+  const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   //UseState for toggling talking options:
   const [questionsVisible, setQuestionsVisible] = useState(false)
@@ -44,7 +48,7 @@ export default function MusicView() {
     } else {
       return
     }
-  },[selectedQuestionReducer, questionsVisible])
+  }, [selectedQuestionReducer, questionsVisible])
 
 
   //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
@@ -69,7 +73,7 @@ export default function MusicView() {
     if (indicatorVisible == true) {
       return <NextTextIndicator nextText={nextText} />
     } else if (questionsVisible == true) {
-      return <TextPopper setQuestionsVisible={setQuestionsVisible}/>
+      return <TextPopper setQuestionsVisible={setQuestionsVisible} />
     } else {
       return <></>
     }
@@ -88,7 +92,7 @@ export default function MusicView() {
             </Paper>
           </Paper>
           <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', margin: '0%', padding: '0%', position: 'relative' }}>
-            <Container onClick={()=>{nextText()}} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute'}} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
+            <Container onClick={() => { nextText() }} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute' }} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
               <Typography sx={{ fontSize: '1.5em' }}>{text}</Typography>
             </Container>
             <RenderIndicatorOrPopper></RenderIndicatorOrPopper>

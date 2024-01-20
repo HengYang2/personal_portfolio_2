@@ -1,23 +1,14 @@
-import React from 'react'
 import * as TWEEN from '@tweenjs/tween.js'
-import { useSelector, useDispatch } from 'react-redux';
 
-
-//Needs to accept: 
-//Camera position
-//reducer state is given:
+//The 'func' variable should be the useIsTweenFinished function that was passed in from the main component calling CameraTween.js
 export default function cameraTween(camera, target, selectedTarget, func) {
 
-
-  const zoomInSpeed = 2000;
-  const zoomOutSpeed = 2000;
+  //func is basically calling a dispatch to the isTweenFinishedReducer saying that a tween is in action
+  //hence why it is passing in the 'false' boolean value.
   func(false);
 
-  // const dispatch = useDispatch();
-  // const setIsAnimationFinished = (bool) => {
-  //   dispatch({ type: 'SET_IS_ANIMATION_FINISHED', payload: bool });
-  //   return;
-  // }
+  //Constants
+  const zoomInSpeed = 2000;
 
   const tweenMe = () => {
 
