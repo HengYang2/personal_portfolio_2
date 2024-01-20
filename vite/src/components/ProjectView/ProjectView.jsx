@@ -100,9 +100,53 @@ export default function ProjectView(props) {
     }
   }
 
+  //Styles for the invisible trophy div
+  const divStyles1 = {
+    position: 'absolute',
+    marginBottom: '10%',
+    height: '40%',
+    width: '60%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    gap: '3%',
+    opacity: '0.5',
+    backgroundColor: 'lightBlue',
+    padding: '0%',
+    border: '1px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+  };
+
+  const divStyles2 = {
+    position: 'relative',
+    margin: '0%',
+    height: '100%',
+    flexGrow: '1',
+    opacity: '0.5',
+    backgroundColor: 'red',
+    padding: '',
+    border: '1px solid darkblue',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontSize: '16px',
+    zIndex: '1000'
+  };
+
+
 
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
+      <div style={divStyles1}>
+        {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT1'); }} onMouseEnter={(e) => { trophyTween(project1); setHoveredDiv('react'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT2'); }} onMouseEnter={(e) => { trophyTween(project2); setHoveredDiv('Redux / Sagas'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT3'); }} onMouseEnter={(e) => { trophyTween(project3); setHoveredDiv('Javascript'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT4'); }} onMouseEnter={(e) => { trophyTween(project4); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+        <div style={divStyles2} onClick={() => { setQuestionsVisible(false); setSelectedQuestion('PROJECT5'); }} onMouseEnter={(e) => { trophyTween(project5); setHoveredDiv('Jquery'); }} onMouseLeave={(e) => { setHoveredDiv('') }}></div>
+      </div>
       <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
         <Stack direction='row' spacing={2} sx={{ bgcolor: '', padding: '0.5%', height: '100%', width: '100%', position: 'absolute', display: 'flex', flexDirection: 'row', justifyContent: 'start' }}>
           <Paper variant='outlined' sx={{ bgcolor: '', height: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'end', alignItems: 'center' }}>

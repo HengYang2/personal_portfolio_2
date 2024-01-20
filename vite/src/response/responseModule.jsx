@@ -32,6 +32,19 @@ export default function responseModule(selectedQuestion) {
 
         case 'PJ0':
             return (['These are my projects that I have worked on in the past or am currently working on!', 'Try hovering over each trophy for a cool animation! Click on a trophy to learn more about that specific project!']);
+        case 'PROJECT1':
+            return (['"Know Your Hours" ']);
+
+        case 'PROJECT2':
+            return (['These are my projects that I have worked on in the past or am currently working on!']);
+
+        case 'PROJECT3':
+            return (['These are my projects that I have worked on in the past or am currently working on!']);
+
+        case 'PROJECT4':
+            return (['These are my projects that I have worked on in the past or am currently working on!']);
+        case 'PROJECT5':
+            return (['These are my projects that I have worked on in the past or am currently working on!']);
 
 
 
