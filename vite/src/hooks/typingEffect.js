@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 // import responseModule from '../components/FocusedInScreen/FocusViews/modules/responseModule';
 
-export default function useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisable, setClickBlockerDiv) {
+export default function useTypingEffect(dialogSequence, collectionIndex, textSpeed, setContinueIndicatorVisible, setQuestionsVisable, setEndTextIndicatorVisible, isFollowUpQuestion) {
 
     const [currentPosition, setCurrentPosition] = useState(0);
     const currentPositionRef = useRef(0);
@@ -13,24 +13,39 @@ export default function useTypingEffect(textCollection, collectionIndex, textSpe
             currentPositionRef.current += 1;
 
             //When the incrementaion is larger that the lenght of the string. Stop looping.
-            if (currentPositionRef.current > textCollection[collectionIndex].length) {
+            if (currentPositionRef.current > dialogSequence[collectionIndex].length) {
+
                 clearInterval(intervalId);
-                if (collectionIndex == textCollection.length - 1) {
-                    setClickBlockerDiv(true);
-                    setIndicatorVisible(false);
-                    setQuestionsVisable(true);
+
+                //If all the strings in the dialogSequence array have been itterated through,
+                //set the questions visible.
+                //Otherwise, set the indicator visible, which will tell the users that 
+                //they can click to continue onto the next string of dialog that is held in the
+                //dialogSequence array.
+                if (collectionIndex == dialogSequence.length - 1) {
+
+                    setContinueIndicatorVisible(false);
+                    //If the followUpQuestion bool is true, set the questions visible,
+                    //otherwise set EndTextIndicator to true.
+                    if (isFollowUpQuestion == true) {
+                        setQuestionsVisable(true);
+                    } else {
+                        setEndTextIndicatorVisible(true)
+                    }
+
                 } else {
-                    setIndicatorVisible(true);
+                    setContinueIndicatorVisible(true);
                 }
             }
         }, textSpeed);
+
         return () => {
             clearInterval(intervalId);
             setCurrentPosition(0);
             currentPositionRef.current = 0;
         }
 
-    }, [textSpeed, textCollection[collectionIndex]], collectionIndex);
+    }, [textSpeed, dialogSequence[collectionIndex]], collectionIndex);
 
-    return textCollection[collectionIndex].substring(0, currentPosition)
+    return dialogSequence[collectionIndex].substring(0, currentPosition);
 }

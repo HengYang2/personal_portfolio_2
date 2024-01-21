@@ -1,31 +1,26 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 //MUI
 import Container from '@mui/material/Container';
 import { Box, Popper, Fade, Paper, Button, createTheme, ThemeProvider, TextField, Typography, Stack } from '@mui/material/';
 
 //import responseModule for recieving text data:
-import responseModule from '../../response/responseModule';
+import responseModule from '../../../data/responseModule';
 
 //Import text components to be conditionally rendered based on if there is more text
 //to be read, or if there is non text left, or if there is the option for you to ask a question:
-import TextPopper from '../AboutMeView/TextPopper/TextPopper';
-import NextTextIndicator from '../AboutMeView/NextTextIndicator/NextTextIndicator';
-import EndTextIndicator from '../AboutMeView/EndTextIndicator/EndTextIndicator'
-
+import TextPopper from '../../DialogComponents/QuestionPopper/QuestionPopper';
+import NextTextIndicator from '../../DialogComponents/NextTextIndicator/NextTextIndicator';
+import EndTextIndicator from '../../DialogComponents/EndTextIndicator/EndTextIndicator'
 
 //Import hooks:
-import useViewState from '../../hooks/useViewState';
-import useSelectedQuestion from '../../hooks/useSelectedQuestion';
-import useIsTweenFinished from '../../hooks/useIsTweenFinished';
-import useTypingEffect from '../../hooks/typingEffect';
-import cameraTween from '../../tween/cameraTween';
+import useTypingEffect from '../../../hooks/typingEffect';
 
 
+export default function MusicView() {
 
-export default function ContactView() {
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   //UseState for toggling talking options:
@@ -53,7 +48,7 @@ export default function ContactView() {
     } else {
       return
     }
-  },[selectedQuestionReducer, questionsVisible])
+  }, [selectedQuestionReducer, questionsVisible])
 
 
   //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
@@ -78,7 +73,7 @@ export default function ContactView() {
     if (indicatorVisible == true) {
       return <NextTextIndicator nextText={nextText} />
     } else if (questionsVisible == true) {
-      return <TextPopper setQuestionsVisible={setQuestionsVisible}/>
+      return <TextPopper setQuestionsVisible={setQuestionsVisible} />
     } else {
       return <></>
     }
@@ -97,7 +92,7 @@ export default function ContactView() {
             </Paper>
           </Paper>
           <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', margin: '0%', padding: '0%', position: 'relative' }}>
-            <Container onClick={()=>{nextText()}} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute'}} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
+            <Container onClick={() => { nextText() }} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute' }} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
               <Typography sx={{ fontSize: '1.5em' }}>{text}</Typography>
             </Container>
             <RenderIndicatorOrPopper></RenderIndicatorOrPopper>
