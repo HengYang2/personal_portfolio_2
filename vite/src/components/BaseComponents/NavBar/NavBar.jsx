@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Button, MenuList, MenuItem, Typography, ClickAwayListener } from '@mui/material/';
+import { Button, MenuList, MenuItem, Typography, ClickAwayListener, Container } from '@mui/material/';
 import { AppBar, Toolbar, IconButton, Stack } from '@mui/material'
 import WaterDropSharpIcon from '@mui/icons-material/WaterDropSharp';
 import IcecreamIcon from '@mui/icons-material/Icecream';
@@ -46,20 +46,21 @@ export default function NavBar(props) {
 
 
     return (
-        <AppBar postion='static' sx={{ height: '6%', maxWidth: '70%', marginRight: '15%', pointerEvents: 'auto' }}>
-            <Toolbar sx={{ height: '100%', width: '100%', bgcolor: 'primary', }}>
-                <IconButton sx={{ bgcolor: 'white',}} size='large' edge='start' color='white' aria-label='logo'>
+        <AppBar postion='static' sx={{ height: '6%', maxWidth: '70%', marginRight: '15%', pointerEvents: 'auto', }}>
+            <Toolbar sx={{ height: '100%', width: '100%', bgcolor: 'primary', display: 'flex', flexDirection:'row', justifyContent: 'start', gap:'1%'  }}>
+                <IconButton sx={{ bgcolor: 'white', marginLeft:'2.2%'}} size='large' edge='start' color='white' aria-label='logo'>
                     <IcecreamIcon />
                 </IconButton>
-                <Typography variant='h6' component='div' sx={{ flexGrow: 1, color: 'black', marginLeft: '1em', bgcolor:'' }}>
+                <Typography variant='h6' component='div' sx={{ width:'51%', color: 'white', bgcolor:'', border:'1px solid white', padding: '0.1em', paddingLeft:'0.3em' }}>
                     Heng's Room
                 </Typography>
-                <Stack direction='row' spacing={2}>
-                    <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); setSelectedQuestion('AB4'); }}>About Me</Button>
-                    <ProjectsMenu camera={props.camera} target={props.target} isOutlined={isOutlined()} />
-                    <Button variant={isOutlined('contactView')} color='secondary' onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setSelectedQuestion('GIT0'); }}>Get In Touch</Button>
-                    <Button variant={isOutlined('musicView')} color='secondary' onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); setSelectedQuestion('M0'); }}>Music</Button>
+                <Stack direction='row' sx={{marginLeft:'0%'}} spacing={2}>
+                    <Button variant={isOutlined('aboutMeView')} color='secondary' sx={{color:'black', bgcolor:'',}} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); setSelectedQuestion('AB4'); }}>About Me</Button>
+                    <ProjectsMenu camera={props.camera} target={props.target} sx={{color:'black',bgcolor:'',}} isOutlined={isOutlined()} />
+                    <Button variant={isOutlined('contactView')} color='secondary' sx={{color:'black', bgcolor:'',}} onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setSelectedQuestion('GIT0'); }}>Get In Touch</Button>
+                    <Button variant={isOutlined('musicView')} color='secondary' sx={{color:'black'}} onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); setSelectedQuestion('M0'); }}>Music</Button>
                 </Stack>
+                <Typography sx={{width:'1.2%', height:'64%', color: 'white', bgcolor:'', border:'1px solid white'}}></Typography>
             </Toolbar>
         </AppBar>
     )
