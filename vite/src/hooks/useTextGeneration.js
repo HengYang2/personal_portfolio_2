@@ -2,32 +2,34 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import useTypingEffect from './typingEffect';
 
-import responseModule from '../data/responseModule';
+import responseModule from '../data/responseModule'
 
 const useTextGeneration = () => {
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer);
 
   // UseState for toggling talking options:
-  const [questionsVisible, setQuestionsVisible] = useState(false);
-  const [textCollection, setTextCollection] = useState(responseModule(selectedQuestionReducer));
+  const [dialogSequence, setDialogSequence] = useState(responseModule(selectedQuestionReducer).dialogSequence);
   const [collectionIndex, setCollectionIndex] = useState(0);
+  const [isFollowUpQuestion, setIsFollowUpQuestion] = useState(responseModule(selectedQuestionReducer).isFollowUpQuestion);
 
   // Continue text indicator and click blocker useStates:
-  const [indicatorVisible, setIndicatorVisible] = useState(false);
-  const [clickBlockerDiv, setClickBlockerDiv] = useState(false);
+  const [questionsVisible, setQuestionsVisible] = useState(false);
+  const [continueIndicatorVisible, setContinueIndicatorVisible] = useState(false);
+  const [endTextIndicatorVisible, setEndTextIndicatorVisible] = useState(false);
 
   // Text parameters:
   const defaultTextSpeedValue = 25;
   const spedUpTextSpeedValue = 0.0005;
   const [textSpeed, setTextSpeed] = useState(defaultTextSpeedValue);
 
-  const text = useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisible, setClickBlockerDiv);
+  const text = useTypingEffect(dialogSequence, collectionIndex, textSpeed, setContinueIndicatorVisible, setQuestionsVisible, setEndTextIndicatorVisible, isFollowUpQuestion);
 
-  // Whenever there is a change in the selectedQuestionReducer, the setTextCollection will get the new list of text
+  // Whenever there is a change in the selectedQuestionReducer, the setDialogSequence will get the new list of text
   // to be generated based on the selectedQuestionReducer
   useEffect(() => {
     if (!questionsVisible) {
-      setTextCollection(responseModule(selectedQuestionReducer));
+      setDialogSequence(responseModule(selectedQuestionReducer).dialogSequence);
+      setIsFollowUpQuestion(responseModule(selectedQuestionReducer).isFollowUpQuestion);
       setCollectionIndex(0);
       setTextSpeed(defaultTextSpeedValue);
     }
@@ -37,18 +39,18 @@ const useTextGeneration = () => {
   // If the user clicks the div while the text is still being generated, when the indicator isn't showing,
   // it will increase the speed at which the text will be generated.
   const nextText = () => {
-    if (indicatorVisible) {
-      if (collectionIndex !== textCollection.length - 1) {
+    if (continueIndicatorVisible) {
+      if (collectionIndex !== dialogSequence.length - 1) {
         setCollectionIndex(collectionIndex + 1);
       }
-      setIndicatorVisible(false);
+      setContinueIndicatorVisible(false);
       setTextSpeed(defaultTextSpeedValue);
     } else {
       setTextSpeed(spedUpTextSpeedValue);
     }
   };
 
-  return { text, indicatorVisible, questionsVisible, setQuestionsVisible, nextText };
+  return { text, continueIndicatorVisible, questionsVisible, setQuestionsVisible, endTextIndicatorVisible, setEndTextIndicatorVisible, nextText };
 };
 
 export default useTextGeneration;

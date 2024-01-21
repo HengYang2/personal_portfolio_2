@@ -4,22 +4,32 @@ import { Box, Popper, Fade, Paper, Typography, Stack, Container } from '@mui/mat
 //Import supporting DialogComponents:
 import QuestionPopper from '../QuestionPopper/QuestionPopper'
 import NextTextIndicator from '../NextTextIndicator/NextTextIndicator'
+import EndTextIndicator from '../EndTextIndicator/EndTextIndicator'
 
 import useTextGeneration from '../../../hooks/useTextGeneration';
 
 
 export default function DialogBox() {
 
-    const { text, indicatorVisible, questionsVisible, setQuestionsVisible, nextText } = useTextGeneration();
+    const { text, continueIndicatorVisible, questionsVisible, setQuestionsVisible, endTextIndicatorVisible, setEndTextIndicatorVisible, nextText } = useTextGeneration();
 
-    //Conditionally render the 'click to continue' button or the TextPopper component base on if more text needs to be generated or if the questions list needs to pop up.
+    //Conditionally render the NextTextIndicator, QuestionPopper, or the EndTextIndicator component base on if more text needs to be generated, questions need to asked
+    //or there isn't anymore text to be generated.
     function RenderIndicatorOrPopper() {
-        if (indicatorVisible == true) {
+        if (continueIndicatorVisible == true) {
             return <NextTextIndicator nextText={nextText} />
-        } else if (questionsVisible == true) {
-            return <QuestionPopper setQuestionsVisible={setQuestionsVisible} />
         } else {
-            return <></>
+            if (questionsVisible == true) {
+
+                return <QuestionPopper setQuestionsVisible={setQuestionsVisible} />
+
+            } else if (endTextIndicatorVisible == true) {
+
+                return <EndTextIndicator />
+
+            } else {
+                return <></>
+            }
         }
     }
 
@@ -35,7 +45,7 @@ export default function DialogBox() {
                     </Paper>
                 </Paper>
                 <Paper variant='outlined' sx={{ bgcolor: 'white', height: '100%', flex: '1', margin: '0%', padding: '0%', position: 'relative' }}>
-                    <Container onClick={() => { nextText() }} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute' }} type="button" className='relative bg-white left-0 w-4/5 top-1.5 h-40 p-2 border border-black rounded-md box-shadow z-20'>
+                    <Container onClick={() => { nextText() }} sx={{ bgcolor: '', width: '100%', height: '100%', padding: '1em', position: 'absolute' }} type="button">
                         <Typography sx={{ fontSize: '1.5em' }}>{text}</Typography>
                     </Container>
                     <RenderIndicatorOrPopper></RenderIndicatorOrPopper>
