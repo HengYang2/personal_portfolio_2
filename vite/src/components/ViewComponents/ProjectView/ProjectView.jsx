@@ -42,11 +42,11 @@ export default function ProjectView(props) {
       <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
         <div style={containerDivStyles}>
           {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
-          <ProjectModal selectedProject={project1} projectName={'PROJECT1'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project2} projectName={'PROJECT2'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project3} projectName={'PROJECT3'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project4} projectName={'PROJECT4'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project5} projectName={'PROJECT5'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project1} projectName={'PROJECT0'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project2} projectName={'PROJECT1'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project3} projectName={'PROJECT2'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project4} projectName={'PROJECT3'} setHoveredDiv={setHoveredDiv} />
+          <ProjectModal selectedProject={project5} projectName={'PROJECT4'} setHoveredDiv={setHoveredDiv} />
         </div>
         <DialogBox/>
         <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setSelectedQuestion('TS0'); setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Button, MenuList, MenuItem, Typography, ClickAwayListener } from '@mui/material/';
 import { AppBar, Toolbar, IconButton, Stack } from '@mui/material'
 import WaterDropSharpIcon from '@mui/icons-material/WaterDropSharp';
+import IcecreamIcon from '@mui/icons-material/Icecream';
+import AnchorIcon from '@mui/icons-material/Anchor';
 import { useDispatch, useSelector } from "react-redux";
 
 import ProjectsMenu from './ProjectsMenu/ProjectsMenu'
@@ -46,10 +48,10 @@ export default function NavBar(props) {
     return (
         <AppBar postion='static' sx={{ height: '6%', maxWidth: '70%', marginRight: '15%', pointerEvents: 'auto' }}>
             <Toolbar sx={{ height: '100%', width: '100%', bgcolor: 'primary', }}>
-                <IconButton size='large' edge='start' color='white' aria-label='logo'>
-                    <WaterDropSharpIcon />
+                <IconButton sx={{ bgcolor: 'white',}} size='large' edge='start' color='white' aria-label='logo'>
+                    <IcecreamIcon />
                 </IconButton>
-                <Typography variant='h6' component='div' sx={{ flexGrow: 1, color: 'black', }}>
+                <Typography variant='h6' component='div' sx={{ flexGrow: 1, color: 'black', marginLeft: '1em', bgcolor:'' }}>
                     Heng's Room
                 </Typography>
                 <Stack direction='row' spacing={2}>
