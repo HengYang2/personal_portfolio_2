@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import { useDispatch } from 'react-redux';
 
 
-export default function TextPopper(props) {
+export default function QuestionPopper(props) {
 
     //For dispatching which question the user selected to the selectedQuestionReducer
     const dispatch = useDispatch();

@@ -13,7 +13,7 @@ import responseModule from '../../../data/responseModule';
 
 //Import text components to be conditionally rendered based on if there is more text
 //to be read, or if there is non text left, or if there is the option for you to ask a question:
-import TextPopper from '../../DialogComponents/TextPopper/TextPopper';
+import TextPopper from '../../DialogComponents/QuestionPopper/QuestionPopper';
 import NextTextIndicator from '../../DialogComponents/NextTextIndicator/NextTextIndicator';
 import EndTextIndicator from '../../DialogComponents/EndTextIndicator/EndTextIndicator'
 
