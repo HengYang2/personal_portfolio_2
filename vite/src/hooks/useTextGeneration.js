@@ -18,8 +18,8 @@ const useTextGeneration = () => {
   const [endTextIndicatorVisible, setEndTextIndicatorVisible] = useState(false);
 
   // Text parameters:
-  const defaultTextSpeedValue = 25;
-  const spedUpTextSpeedValue = 0.0005;
+  const defaultTextSpeedValue = 8;
+  const spedUpTextSpeedValue = 0.00001;
   const [textSpeed, setTextSpeed] = useState(defaultTextSpeedValue);
 
   const text = useTypingEffect(dialogSequence, collectionIndex, textSpeed, setContinueIndicatorVisible, setQuestionsVisible, setEndTextIndicatorVisible, isFollowUpQuestion);
@@ -30,6 +30,7 @@ const useTextGeneration = () => {
     if (!questionsVisible) {
       setDialogSequence(responseModule(selectedQuestionReducer).dialogSequence);
       setIsFollowUpQuestion(responseModule(selectedQuestionReducer).isFollowUpQuestion);
+      setEndTextIndicatorVisible(false);
       setCollectionIndex(0);
       setTextSpeed(defaultTextSpeedValue);
     }

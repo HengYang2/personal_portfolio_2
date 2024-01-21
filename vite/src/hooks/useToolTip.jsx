@@ -25,7 +25,6 @@ const useTooltip = () => {
         //Cursor location
         const x = event.clientX;
         const y = event.clientY;
-        console.log('xy coords:', x, y);
 
         //Spawn the 'cursor div' at the location of the cursor
         cursor.style.position = 'absolute';

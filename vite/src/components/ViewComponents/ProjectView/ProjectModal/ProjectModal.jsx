@@ -12,8 +12,8 @@ import styles from '../../../../styles/styles'
 const ProjectModal = (props) => {
 
     //Div Styles:
-    const containerStyles = styles.trophyDivStyles.containerDiv;
-    const secondaryStyles = styles.trophyDivStyles.childDiv;
+    const primaryStyles = styles.trophyDivStyles.childDiv1;
+    const secondaryStyles = styles.trophyDivStyles.childDiv2;
     const imgStyles = styles.trophyDivStyles.img;
 
     //Expecting an object with the project name, desc, URLlink, techstack, and imgPath
@@ -30,7 +30,7 @@ const ProjectModal = (props) => {
 
 
     return (
-        <div style={containerStyles}>
+        <div style={primaryStyles}>
             <div style={secondaryStyles} onMouseEnter={(e) => { trophyTween(props.selectedProject); props.setHoveredDiv(modalInformation.name); }} onMouseLeave={(e) => { props.setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
             <Modal
                 open={open}

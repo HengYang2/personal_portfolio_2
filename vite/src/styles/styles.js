@@ -5,7 +5,7 @@ const styles = {
             marginBottom: '8%',
             marginRight: '22%',
             height: '25%',
-            width: '33%',
+            width: '32%',
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -36,6 +36,24 @@ const styles = {
     },
     trophyDivStyles: { //For Trophy Divs
         containerDiv: {
+            position: 'absolute',
+            marginBottom: '10%',
+            height: '40%',
+            width: '60%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            gap: '0%',
+            opacity: '1',
+            backgroundColor: '',
+            padding: '0%',
+            border: '0px solid darkblue',
+            borderRadius: '8px',
+            textAlign: 'center',
+            fontSize: '16px',
+        },
+        childDiv1: {
             position: 'relative',
             margin: '0%',
             padding: '0%',
@@ -48,7 +66,7 @@ const styles = {
             fontSize: '16px',
             zIndex: '1000'
         },
-        childDiv: {
+        childDiv2: {
             position: 'relative',
             margin: '0%',
             padding: '0%',

@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function responseModule(selectedQuestion) {
 
     const reactStory = ['"React\'s Radiant Kingdom: A Tale of Web Sorcery \n - Summary: Embark on an epic journey through React\'s enchanted kingdom, where web sorcery shapes the destiny of realms."']
@@ -57,13 +59,13 @@ export default function responseModule(selectedQuestion) {
 
         case 'TS0':
             return ({
-                dialogSequence: reactStory,
+                dialogSequence: ['This is my bookshelf. It contains most of the tech stacks that I use!', "Try hovering over each book for a cool animation! Also try clicking on one, I'll even read it for you. "],
                 isFollowUpQuestion: false,
                 followUpQuestionCode: null,
             });
         case 'REACT':
             return ({
-                dialogSequence: RED,
+                dialogSequence: reactStory,
                 isFollowUpQuestion: false,
                 followUpQuestionCode: null,
             });
