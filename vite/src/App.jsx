@@ -1,154 +1,73 @@
-import { useEffect, useState } from 'react'
-import Container from '@mui/material/Container';
-import { Grid, Stack, Typography } from '@mui/material/';
-// import BoxSx from './components/BoxSx';
-import { Box, Paper, Button, createTheme, ThemeProvider, TextField } from '@mui/material/';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import MusicOffIcon from '@mui/icons-material/MusicOff';
 
-//Import BaseComponents:
-import NavBar from './components/BaseComponents/NavBar/NavBar';
-import BlackSideBars from './components/BaseComponents/BlackSideBars/BlackSideBars';
+import { createTheme, ThemeProvider } from '@mui/material/';
 
-//Import all diiferenet ViewComponents:
-import ContactView from './components/ViewComponents/ContactView/ContactView';
-import AboutMeView from './components/ViewComponents/AboutMeView/AboutMeView';
-import MusicView from './components/ViewComponents/MusicView/MusicView';
-import TechStackView from './components/ViewComponents/TechStackView/TechStackView';
-import ProjectView from './components/ViewComponents/ProjectView/ProjectView';
-
-//Redux
-import { useDispatch, useSelector, } from "react-redux";
-
-//Import Mouse Tracker
-// import MouseTracker from './components/MouseTracker/MouseTracker';
-
-
-
-const breakpoints = {
-  values: {
-    mobile: 0,
-    tablet: 640,
-    laptop: 1024,
-    desktop: 1200,
-  }
-};
-
-const theme = createTheme({
-  breakpoints,
-  typography: {
-    h1: {
-      fontSize: "1.5rem",
-      [`@media screen and (max-width: ${breakpoints.values.mobile}px)`]: {
-        fontSize: "0.2rem"
-      }
-    }
-  },
-  // palette: {
-  //   background:{
-  //     paper: '#000000'
-  //   }
-  // }
-  palette: {
-    primary: {
-      main: '#ab7e4c',
-      light: '#01fe21',
-      dark: '#01fe21',
-      contrastText: '#01fe21',
-    },
-    secondary: {
-      main: '#ffffff',
-      light: '#01fe21',
-      dark: '#01fe21',
-      contrastText: '#000000',
-    },
-    error: {
-      main: '#00ffff',
-      light: '#01fe21',
-      dark: '#01fe21',
-      contrastText: '#01fe21',
-    },
-    warning: {
-      main: '#01fe21',
-      light: '#01fe21',
-      dark: '#01fe21',
-      contrastText: '#01fe21',
-    },
-    success: {
-      main: '#01fe21',
-      light: '#01fe21',
-      dark: '#01fe21',
-      contrastText: '#01fe21',
-    },
-  }
-})
+import ViewportContainer from './components/ViewportContainer/ViewportContainer';
 
 function App(props) {
 
-  const viewStateReducer = useSelector(store => store.viewStateReducer);
-  const isTweenFinishedReducer = useSelector(store => store.isTweenFinishedReducer);
-
-  const renderCurrentView = () => {
-
-    //If tween is still playing, exit function:
-    if (isTweenFinishedReducer === false) {
-      return;
+  const breakpoints = {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     }
-
-
-    //Switch views based on viewStateReducer:
-    switch (viewStateReducer) {
-      case 'aboutMeView':
-        return (
-          <>
-            <NavBar target={props.target} camera={props.camera}></NavBar>
-            <AboutMeView target={props.target} camera={props.camera} scene={props.scene}></AboutMeView>
-          </>
-        )
-        break;
-      case 'contactView':
-        return (
-          <>
-            <NavBar target={props.target} camera={props.camera}></NavBar>
-            <ContactView target={props.target} camera={props.camera} scene={props.scene}></ContactView>
-          </>
-        )
-        break;
-      case 'projectView':
-        return (
-          <>
-            <NavBar target={props.target} camera={props.camera}></NavBar>
-            <ProjectView target={props.target} camera={props.camera} scene={props.scene}></ProjectView>
-          </>
-        )
-        break;
-      case 'techStackView':
-        return (
-          <>
-            <NavBar target={props.target} camera={props.camera}></NavBar>
-            <TechStackView target={props.target} camera={props.camera} scene={props.scene}></TechStackView>
-          </>
-        )
-        break;
-      case 'musicView':
-        return (
-          <>
-            <NavBar target={props.target} camera={props.camera}></NavBar>
-            <MusicView target={props.target} camera={props.camera} scene={props.scene}></MusicView>
-          </>
-        )
-        break;
-      default:
-        return <h1>Something went wrong {":("}</h1>
-        break;
+  };
+  
+  const theme = createTheme({
+    breakpoints,
+    typography: {
+      h1: {
+        fontSize: "1.5rem",
+        [`@media screen and (max-width: ${breakpoints.values.mobile}px)`]: {
+          fontSize: "0.2rem"
+        }
+      }
+    },
+    // palette: {
+    //   background:{
+    //     paper: '#000000'
+    //   }
+    // }
+    palette: {
+      primary: {
+        main: '#ab7e4c',
+        light: '#01fe21',
+        dark: '#01fe21',
+        contrastText: '#01fe21',
+      },
+      secondary: {
+        main: '#ffffff',
+        light: '#01fe21',
+        dark: '#01fe21',
+        contrastText: '#000000',
+      },
+      error: {
+        main: '#00ffff',
+        light: '#01fe21',
+        dark: '#01fe21',
+        contrastText: '#01fe21',
+      },
+      warning: {
+        main: '#01fe21',
+        light: '#01fe21',
+        dark: '#01fe21',
+        contrastText: '#01fe21',
+      },
+      success: {
+        main: '#01fe21',
+        light: '#01fe21',
+        dark: '#01fe21',
+        contrastText: '#01fe21',
+      },
     }
-  }
-
+  })
+  
+  
   return (
     <ThemeProvider theme={theme}>
-      <BlackSideBars></BlackSideBars>
-      {renderCurrentView()}
+      <ViewportContainer target={props.target} camera={props.camera} scene={props.scene}/>
     </ThemeProvider>
   )
 }
