@@ -32,15 +32,15 @@ function App(props) {
     // }
     palette: {
       primary: {
-        main: '#ab7e4c',
+        main: '#AB7E4C',
         light: '#01fe21',
         dark: '#01fe21',
         contrastText: '#01fe21',
       },
       secondary: {
-        main: '#ffffff',
-        light: '#01fe21',
-        dark: '#01fe21',
+        main: '#FFFFFF',
+        light: '#5CC8FF',
+        dark: '#5CC8FF',
         contrastText: '#000000',
       },
       error: {
