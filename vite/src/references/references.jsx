@@ -32,3 +32,44 @@
   //         </Typography>
   //       </Button>
   //     </Container>
+
+
+
+
+
+  ///UI STUFF!
+//   import React from 'react';
+// import { useTheme } from '@mui/material/styles';
+// import useMediaQuery from '@mui/material/useMediaQuery';
+// import Box from '@mui/material/Box';
+
+// const ResponsiveDiv = () => {
+//   const theme = useTheme();
+//   const isXs = useMediaQuery(theme.breakpoints.only('xs'));
+//   const isSm = useMediaQuery(theme.breakpoints.only('sm'));
+//   const isMd = useMediaQuery(theme.breakpoints.only('md'));
+//   const isLg = useMediaQuery(theme.breakpoints.only('lg'));
+//   const isXl = useMediaQuery(theme.breakpoints.only('xl'));
+
+//   return (
+//     <Box
+//       sx={{
+//         height: isXs ? 50 : // Height for xs screens
+//                isSm ? 100 : // Height for sm screens
+//                isMd ? 150 : // Height for md screens
+//                isLg ? 200 : // Height for lg screens
+//                isXl ? 250 : 300, // Height for xl screens
+//         width: isXs ? 100 : // Width for xs screens
+//                isSm ? 150 : // Width for sm screens
+//                isMd ? 200 : // Width for md screens
+//                isLg ? 250 : // Width for lg screens
+//                isXl ? 300 : 350, // Width for xl screens
+//         backgroundColor: 'lightgray', // Add a background color for visibility
+//       }}
+//     >
+//       Responsive Div
+//     </Box>
+//   );
+// };
+
+// export default ResponsiveDiv;
