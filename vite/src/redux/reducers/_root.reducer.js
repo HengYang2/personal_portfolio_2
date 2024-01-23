@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import viewStateReducer from './viewStateReducer';
 import isTweenFinishedReducer from './isTweenFinishedReducer';
+import selectedQuestionReducer from './selectedQuestionReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -11,6 +12,7 @@ import isTweenFinishedReducer from './isTweenFinishedReducer';
 const rootReducer = combineReducers({
     viewStateReducer,
     isTweenFinishedReducer,
+    selectedQuestionReducer,
 });
 
 export default rootReducer;
