@@ -81,12 +81,12 @@ const DropdownMenu = (props) => {
                     horizontal: 'left',
                 }}
             >
-                <MenuItem  sx={''} onClick={() => handleButtonClick('Button 1')}>
+                <MenuItem onClick={() => handleButtonClick('Button 1')}>
                     <Button sx={menuButtonStyles} variant='contained' color='secondary' onClick={() => { setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished); setSelectedQuestion('PJ0') }}>
                         Projects
                     </Button>
                 </MenuItem>
-                <MenuItem sx={''} onClick={() => handleButtonClick('Button 2')}>
+                <MenuItem onClick={() => handleButtonClick('Button 2')}>
                     <Button sx={menuButtonStyles} variant='contained' color='secondary' onClick={() => { setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished); setSelectedQuestion('TS0') }}>
                         Tech Stack
                     </Button>

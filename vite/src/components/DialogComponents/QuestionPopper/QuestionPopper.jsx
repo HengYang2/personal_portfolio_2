@@ -35,7 +35,7 @@ export default function QuestionPopper(props) {
                 Click to ask a Question
             </Button>
             <Popper id="simple-popper" open={open} anchorEl={anchorEl} placement="top-end" sx={{ bgcolor: '', width: '10%', height: '40%', zIndex: '1000', marginBottom: '7%', position: 'absolute' }}>
-                <Paper sx={{ bgcolor: 'lightBlue', padding: '0.5em', width: '100%', height: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', gap: '0.5em', position: 'absolute' }}>
+                <Paper sx={{ bgcolor: '#5CC8FF', padding: '0.5em', width: '100%', height: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', gap: '0.5em', position: 'absolute' }}>
                     <Button sx={{ flexGrow: 1, fontSize: buttonFontSize, bgcolor: 'white', color: 'black' }} onClick={() => { handleClose(); setSelectedQuestion('AB1'); setQuestionsVisible(false) }}>
                         Who are you?
                     </Button>

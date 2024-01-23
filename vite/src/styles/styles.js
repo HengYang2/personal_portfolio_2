@@ -153,12 +153,74 @@ export default function styles() {
             height: '100%',
             flexGrow: 1,
         },
+
         mainViewStyles: {
             backgroundColor: '',
             position:'relative',
             flexGrow: 1,
             width: '100%',
-            opacity: '75%'
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'start',
+            gap: '0%',
+        },
+        interactiveWindowStyles: {
+            backgroundColor: '',
+            position:'relative',
+            flexGrow: 1,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'start',
+            gap: '0%',
+        },
+        dialogWindowStyles: {
+            backgroundColor: '',
+            position:'relative',
+            height: 
+                isXs ? '30%':
+                isSm ? '30%':
+                isMd ? '30%':
+                isLg ? '30%':
+                isXl ? '30%': '30%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '0%',
+            padding: '1% 8% 1% 8%'
+        },
+        dialogContainerStyles: {
+            backgroundColor: '#5CC8FF',
+            position:'relative',
+            height: '100%',
+            width: '100%',
+        },
+        dialogStackStyles: {
+            backgroundColor: 'red',
+            position:'relative',
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'start',
+            alignItems: 'center',
+            gap: '0%',
+            padding: '1%'
+        },
+        portraitStyles: {
+            backgroundColor: 'blue',
+            position:'relative',
+            height: '50%',
+            width: '25%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'start',
+            gap: '0%',
         },
         bookDivStyles: { //For Book Divs
             containerDiv: {
