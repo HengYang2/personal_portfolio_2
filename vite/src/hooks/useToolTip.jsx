@@ -7,7 +7,7 @@ const useTooltip = () => {
   const [hoveredDiv, setHoveredDiv] = useState('');
 
   //Styles for the toolTipDiv:
-  const toolTipStyles = styles.toolTipStyles;
+  const toolTipStyles = styles().toolTipStyles;
 
 
   const renderToolTip = () => {

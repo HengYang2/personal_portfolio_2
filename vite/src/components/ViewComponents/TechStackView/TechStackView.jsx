@@ -16,10 +16,12 @@ import useToolTip from '../../../hooks/useToolTip';
 //Import BookDiv, to overlay ontop of the books so that they can be animated
 import BookDiv from './BookDiv/BookDiv';
 
-//Import DialogBox:
-import DialogBox from '../../DialogComponents/DialogBox/DialogBox';
+import styles from '../../../styles/styles';
 
 export default function TechStackView(props) {
+
+  //Styles
+  const upArrowStyles = styles().upArrowStyles;
 
   //Imported dispatch functions:
   const { setViewState } = useViewState();
@@ -35,8 +37,7 @@ export default function TechStackView(props) {
       <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
         {renderToolTip()}
         <BookDiv setSelectedQuestion={setSelectedQuestion} setHoveredDiv={setHoveredDiv} />
-        <DialogBox />
-        <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '33%' }} onClick={() => { setSelectedQuestion('PJ0'); setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
+        <Button sx={upArrowStyles} onClick={() => { setSelectedQuestion('PJ0'); setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
       </Container>
     </>
   )

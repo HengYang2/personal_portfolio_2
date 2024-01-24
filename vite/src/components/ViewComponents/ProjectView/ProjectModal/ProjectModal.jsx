@@ -15,10 +15,15 @@ import styles from '../../../../styles/styles'
 
 const ProjectModal = (props) => {
 
-    //Div Styles:
-    const primaryStyles = styles.trophyDivStyles.childDiv1;
-    const secondaryStyles = styles.trophyDivStyles.childDiv2;
-    const imgStyles = styles.trophyDivStyles.img;
+    //Styles:
+    const trophySubDiv1Styles = styles().trophyStyles.subDiv1;
+    const trophySubDiv2Styles = styles().trophyStyles.subDiv2;
+    const modalContainerStyles = styles().trophyStyles.modals.container;
+    const imgFrameStyles = styles().trophyStyles.modals.imgFrame;
+    const imgStyles = styles().trophyStyles.modals.img;
+    const textFrameStyles = styles().trophyStyles.modals.textFrame;
+
+
 
     const [open, setOpen] = useState(false);
 
@@ -36,28 +41,29 @@ const ProjectModal = (props) => {
     const [projectNumber, setProjectNumber] = useState(projectModalInfo(props.projectName).orderNumber)
 
     return (
-        <div style={primaryStyles}>
-            <div style={secondaryStyles} onMouseEnter={(e) => { trophyTween(props.selectedProject); props.setHoveredDiv(modalInformation.name); }} onMouseLeave={(e) => { props.setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
+        <div style={trophySubDiv1Styles}>
+            <div style={trophySubDiv2Styles} onMouseEnter={(e) => { trophyTween(props.selectedProject); props.setHoveredDiv(modalInformation.name); }} onMouseLeave={(e) => { props.setHoveredDiv('') }} onClick={() => { handleOpen(); }}></div>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                sx={{ bgcolor: '', width: '100%', height: '100%', position: 'absolute', padding: '0%', display: 'block' }}
             >
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', gap: '0%', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '70%', height: '60%', bgcolor: 'black', }}>
-                    <Container sx={{ height: '100%', width: '30%', bgcolor: 'white', margin: '0%', padding: '0%' }}>
+                <div style={modalContainerStyles}>
+                    <div style={imgFrameStyles}>
                         <img style={imgStyles} src={modalInformation.imgPATH} />
-                    </Container>
-                    <Container sx={{ height: '100%', width: '70%', bgcolor: 'white', display: 'flex', flexDirection: 'column', gap: '1em', padding: '1em', margin: '0%' }}>
+                    </div>
+                    <div style={textFrameStyles}>
                         <Typography variant='h2'>{modalInformation.name}</Typography>
-                        <Typography variant='h1'>{modalInformation.description}</Typography>
-                        <Typography variant='h1' sx={{ marginTop: '2em' }} >{modalInformation.link}</Typography>
-                        <Typography variant='h1' sx={{ marginTop: '7em' }} > {modalInformation.techStack}</Typography>
-                    </Container>
-                    <Button sx={{ position: 'absolute', width: '2em', aspectRatio: '1/1', marginLeft: '93.5%', marginBottom: '36%', bgcolor: 'pink', color: 'black', border:'1px solid grey', borderRadius:'100px' }} onClick={handleClose}><CloseIcon /></Button>
-                    <Button sx={{ position: 'absolute', width: '5em', aspectRatio: '1/1', marginRight: '92%', marginBottom: '5%', bgcolor: 'lightBlue', color: 'black' }} onClick={() => { projectHandler('back', projectNumber, setProjectNumber, setModalInformation) }}><ArrowBackIosNewIcon /></Button>
-                    <Button sx={{ position: 'absolute', width: '3em', aspectRatio: '1/1', marginLeft: '92%', marginBottom: '5%', bgcolor: 'lightBlue', color: 'black' }} onClick={() => { projectHandler('forward', projectNumber, setProjectNumber, setModalInformation) }}><ArrowForwardIosIcon /></Button>
-                </Box>
+                        <Typography variant='h1'sx={{ marginTop: '1%' }}>{modalInformation.description}</Typography>
+                        <Typography variant='h1' sx={{ marginTop: '3%' }} >{modalInformation.link}</Typography>
+                        <Typography variant='h1' sx={{ marginTop: '30%' }} > {modalInformation.techStack}</Typography>
+                    </div>
+                    <Button sx={{ position: 'absolute', width: '2em', aspectRatio: '1/1', marginLeft: '92%', marginBottom: '40%', bgcolor: '#fa003f', color: 'black', border: 'px solid grey', borderRadius: '100px' }} onClick={handleClose}><CloseIcon /></Button>
+                    <Button sx={{ position: 'absolute', height: '5em', aspectRatio: '1/1', marginRight: '92%', marginBottom: '6%', bgcolor: 'lightBlue', color: 'black' }} onClick={() => { projectHandler('back', projectNumber, setProjectNumber, setModalInformation) }}><ArrowBackIosNewIcon /></Button>
+                    <Button sx={{ position: 'absolute', height: '5em', aspectRatio: '1/1', marginLeft: '92%', marginBottom: '6%', bgcolor: 'lightBlue', color: 'black' }} onClick={() => { projectHandler('forward', projectNumber, setProjectNumber, setModalInformation) }}><ArrowForwardIosIcon /></Button>
+                </div>
             </Modal>
         </div>
     );
