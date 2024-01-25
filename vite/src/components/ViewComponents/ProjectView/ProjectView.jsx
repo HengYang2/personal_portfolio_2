@@ -19,11 +19,10 @@ import ProjectModal from './ProjectModal/ProjectModal'
 
 import styles from '../../../styles/styles';
 
-import DialogBox from '../../DialogComponents/DialogBox/DialogBox'
-
 export default function ProjectView(props) {
 
-  const containerDivStyles = styles.trophyDivStyles.containerDiv;
+  const trophyContainerStyles = styles().trophyStyles.container;
+  const downArrowStyles = styles().downArrowStyles;
 
   //Imported dispatch functions:
   const { setViewState } = useViewState();
@@ -35,22 +34,20 @@ export default function ProjectView(props) {
   const { renderToolTip, setHoveredDiv } = useToolTip();
 
 
+  //Selected question reducer is activated by the button which changes the question to the techstack dialog.
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   return (
     <>
-      <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
-        <div style={containerDivStyles}>
-          {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
-          <ProjectModal selectedProject={project1} projectName={'PROJECT0'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project2} projectName={'PROJECT1'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project3} projectName={'PROJECT2'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project4} projectName={'PROJECT3'} setHoveredDiv={setHoveredDiv} />
-          <ProjectModal selectedProject={project5} projectName={'PROJECT4'} setHoveredDiv={setHoveredDiv} />
-        </div>
-        <DialogBox/>
-        <Button sx={{ height: '10%', aspectRatio: '1/1', bgcolor: 'lightBlue', marginLeft: '60%', marginBottom: '-12%' }} onClick={() => { setSelectedQuestion('TS0'); setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
-      </Container>
+      <div style={trophyContainerStyles}>
+        {/* books passed into bookTween() are global variables that are attached to the 'window' object */}
+        <ProjectModal selectedProject={project1} projectName={'PROJECT0'} setHoveredDiv={setHoveredDiv} />
+        <ProjectModal selectedProject={project2} projectName={'PROJECT1'} setHoveredDiv={setHoveredDiv} />
+        <ProjectModal selectedProject={project3} projectName={'PROJECT2'} setHoveredDiv={setHoveredDiv} />
+        <ProjectModal selectedProject={project4} projectName={'PROJECT3'} setHoveredDiv={setHoveredDiv} />
+        <ProjectModal selectedProject={project5} projectName={'PROJECT4'} setHoveredDiv={setHoveredDiv} />
+      </div>
+      <Button sx={downArrowStyles} onClick={() => { setSelectedQuestion('TS0'); setViewState('techStackView'); cameraTween(props.camera, props.target, 'books', setIsTweenFinished) }}><ArrowDownwardIcon sx={{ color: 'black' }}></ArrowDownwardIcon></Button>
       {renderToolTip()}
     </>
   )
