@@ -107,7 +107,7 @@ export default function cameraTween(camera, target, selectedTarget, func) {
   const tweenLaptop = () => {
 
     const tweenCamera = new TWEEN.Tween({ x: camera.position.x, y: camera.position.y, z: camera.position.z })
-      .to({ x: -1.5, y: 4.5, z: 2.76 }, zoomInSpeed)
+      .to({ x: 0, y: 4.5, z: 2.76 }, zoomInSpeed)
       .onUpdate((coords) => {
         camera.position.x = coords.x
         camera.position.y = coords.y
@@ -118,7 +118,7 @@ export default function cameraTween(camera, target, selectedTarget, func) {
       .delay(10);
 
     const tweenTarget = new TWEEN.Tween({ x: target.position.x, y: target.position.y, z: target.position.z })
-      .to({ x: -4, y: 2.5, z: 2.76 }, zoomInSpeed)
+      .to({ x: -4, y: 4, z: 2.76 }, zoomInSpeed)
       .onUpdate((coords) => {
         target.position.x = coords.x
         target.position.y = coords.y
@@ -139,7 +139,7 @@ export default function cameraTween(camera, target, selectedTarget, func) {
   const tweenSpeakers = () => {
 
     const tweenCamera = new TWEEN.Tween({ x: camera.position.x, y: camera.position.y, z: camera.position.z })
-      .to({ x: 1.25, y: 3.5, z: -1.5 }, zoomInSpeed)
+      .to({ x: 1.1, y: 4, z: -1.5 }, zoomInSpeed)
       .onUpdate((coords) => {
         camera.position.x = coords.x
         camera.position.y = coords.y
@@ -150,7 +150,7 @@ export default function cameraTween(camera, target, selectedTarget, func) {
       .delay(10);
 
     const tweenTarget = new TWEEN.Tween({ x: target.position.x, y: target.position.y, z: target.position.z })
-      .to({ x: 1.25, y: 4, z: -4.5 }, zoomInSpeed)
+      .to({ x: 1.1, y: 4, z: -4.5 }, zoomInSpeed)
       .onUpdate((coords) => {
         target.position.x = coords.x
         target.position.y = coords.y

@@ -34,7 +34,7 @@ const scene = new THREE.Scene();
 //Load background: //&************************************************************************************************************************************************************
 // const backgroundTexture = new THREE.TextureLoader().load('skyBox_bk.png', 'skyBox_ft.png', 'skyBox_dn.png', 'skyBox_lf.png', 'skyBox_rt.png', 'skyBox_up.png',);
 // scene.background = backgroundTexture;
-const selectedImage = 'crystalImage.jpg';
+const selectedImage = 'snowymountains.avif';
 const materialArray = [];
 const texture_ft = new THREE.TextureLoader().load(selectedImage);
 const texture_bk = new THREE.TextureLoader().load(selectedImage);
@@ -54,7 +54,7 @@ for (let i=0; i<6; i++) {
   materialArray[i].side = THREE.BackSide;
 }
 
-let skyboxGeo = new THREE.BoxGeometry(300,300,300)
+let skyboxGeo = new THREE.BoxGeometry(400,400,500)
 const skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
 scene.add(skybox);
@@ -244,7 +244,7 @@ scene.add(light, ambientLight, hemisphereLight, spl1, pl2, pl3, pl4);
 
 //Room Model:
 const gltfLoader = new GLTFLoader();
-gltfLoader.load('/bedroomMODIFIED2.gltf', (gltfscene) => {
+gltfLoader.load('/hengsRoomModel.gltf', (gltfscene) => {
 
   scene.add(gltfscene.scene);
   console.log("gltfscene", scene.getObjectByName("Scene"));
