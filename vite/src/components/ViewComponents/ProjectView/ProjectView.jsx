@@ -34,6 +34,7 @@ export default function ProjectView(props) {
   const { renderToolTip, setHoveredDiv } = useToolTip();
 
 
+  //Selected question reducer is activated by the button which changes the question to the techstack dialog.
   const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   return (
