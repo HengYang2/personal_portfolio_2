@@ -57,6 +57,8 @@ for (let i=0; i<6; i++) {
 let skyboxGeo = new THREE.BoxGeometry(400,400,500)
 const skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
+skybox.position.set(0,12,0);
+
 scene.add(skybox);
 scene.backgroundIntensity = 0;
 

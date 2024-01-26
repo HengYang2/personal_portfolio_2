@@ -235,6 +235,19 @@ export default function styles() {
         },
 
         //BOOK STYLES
+        techStackContainerStyles: {
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '0%',
+            backgroundColor: '',
+            padding: '0%',
+            margin: '0%',
+        },
         bookStyles: {
             container: {
                 position: 'absolute',
@@ -411,5 +424,59 @@ export default function styles() {
             fontSize: '16px',
             zIndex: '1000',
         },
+
+        //TOOL TIP STYLES
+        contactViewContainerStyles: {
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '0%',
+            backgroundColor: '',
+            padding: '0%',
+            margin: '0%',
+        },
+        emailModalStyles: {
+            subDiv1: {
+                position: 'absolute',
+                height: '15%',
+                width: '10%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '0%',
+                backgroundColor: 'red',
+                padding: '0%',
+                marginTop: '26%',
+            },
+            subDiv2: {
+                position: 'relative',
+                height: '100%',
+                width: '100%',
+                opacity: '1',
+                backgroundColor: 'blue',
+                borderRadius: '8px',
+            },
+            container: {
+                backgroundColor: 'white',
+                opacity: '75%',
+                position: 'relative',
+                height: '59%',
+                width: '42%',
+                padding: '0%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+            },
+        },
+
     })
 }

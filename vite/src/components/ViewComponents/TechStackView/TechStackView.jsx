@@ -22,6 +22,7 @@ export default function TechStackView(props) {
 
   //Styles
   const upArrowStyles = styles().upArrowStyles;
+  const techStackContainerStyles = styles().techStackContainerStyles;
 
   //Imported dispatch functions:
   const { setViewState } = useViewState();
@@ -34,11 +35,11 @@ export default function TechStackView(props) {
 
   return (
     <>
-      <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
+      <div style={techStackContainerStyles}>
         {renderToolTip()}
         <BookDiv setSelectedQuestion={setSelectedQuestion} setHoveredDiv={setHoveredDiv} />
         <Button sx={upArrowStyles} onClick={() => { setSelectedQuestion('PJ0'); setViewState('projectView'); cameraTween(props.camera, props.target, 'trophies', setIsTweenFinished) }}><ArrowUpwardIcon sx={{ color: 'black' }}></ArrowUpwardIcon></Button>
-      </Container>
+      </div>
     </>
   )
 }

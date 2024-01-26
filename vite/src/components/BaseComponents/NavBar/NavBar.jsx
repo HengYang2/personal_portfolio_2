@@ -54,7 +54,7 @@ export default function NavBar(props) {
                 <div style={navStackStyles}>
                     <Button variant={isOutlined('aboutMeView')} color='secondary' sx={navButtonStyles} onClick={() => { setViewState('aboutMeView'); cameraTween(props.camera, props.target, 'me', setIsTweenFinished); setSelectedQuestion('AB4'); }}>About Me</Button>
                     <ProjectsMenuButton isOutlined={isOutlined()} camera={props.camera} target={props.target} />
-                    <Button variant={isOutlined('contactView')} color='secondary' sx={navButtonStyles} onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setSelectedQuestion('GIT0'); }}>Get In Touch</Button>
+                    <Button variant={isOutlined('contactView')} color='secondary' sx={navButtonStyles} onClick={() => { setViewState('contactView'); cameraTween(props.camera, props.target, 'desk', setIsTweenFinished); setSelectedQuestion('GIT0'); }}>Get In Touch</Button>
                     <Button variant={isOutlined('musicView')} color='secondary' sx={navButtonStyles} onClick={() => { setViewState('musicView'); cameraTween(props.camera, props.target, 'speakers', setIsTweenFinished); setSelectedQuestion('M0'); }}>Music</Button>
                 </div>
                 <div style={navBarEndCapStyles}/>

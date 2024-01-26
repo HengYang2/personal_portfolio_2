@@ -35,7 +35,7 @@ export default function ProjectView(props) {
 
 
   //Selected question reducer is activated by the button which changes the question to the techstack dialog.
-  const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
+  // const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
 
   return (
     <>

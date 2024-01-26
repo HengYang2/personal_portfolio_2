@@ -1,7 +1,7 @@
 
 import { createTheme, ThemeProvider } from '@mui/material/';
 
-import ViewportContainer from './components/ViewportContainer/ViewportContainer';
+import ViewportContainer from './components/BaseComponents/ViewportContainer/ViewportContainer';
 
 function App(props) {
 
