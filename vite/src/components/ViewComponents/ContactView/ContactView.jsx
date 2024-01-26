@@ -25,12 +25,12 @@ export default function ContactView(props) {
   const contactViewContainerStyles = styles().contactViewContainerStyles;
 
   return (
-    <div style={{ paddingLeft: '8%', paddingTop: '8%', opacity: '0.5', width: '100%', height: '100%', backgroundColor: 'pink', display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', gap: '2%' }}>
-      <div style={{ backgroundColor: 'lightblue', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'shotgun', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('SG') }}></div>
-      <div style={{ backgroundColor: 'lightblue', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'mrFrogPicture', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('MFP') }}></div>
-      <div style={{ backgroundColor: 'lightblue', width: '45%', height: '30%', display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center', gap: '0%' }}>
-        <div style={{ backgroundColor: 'green', width: '65%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setViewState('emailView') }} />
-        <div style={{ backgroundColor: 'yellow', width: '35%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'zombieHand', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('ZH') }} />
+    <div style={{ paddingLeft: '8%', paddingTop: '8%', opacity: '0.25', width: '100%', height: '100%', backgroundColor: '', display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', gap: '2%' }}>
+      <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'shotgun', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('SG') }}></Button>
+      <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'mrFrogPhoto', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('MFP') }}></Button>
+      <div style={{ backgroundColor: '', order: '1px solid white', width: '45%', height: '30%', display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center', gap: '0%' }}>
+        <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '65%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setViewState('emailView') }} />
+        <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '35%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'zombieHand', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('ZH') }} />
       </div>
     </div>
   )
