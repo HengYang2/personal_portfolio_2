@@ -11,6 +11,7 @@ import ProjectView from "../../ViewComponents/ProjectView/ProjectView";
 import ContactView from '../../ViewComponents/ContactView/ContactView';
 import EmailView from "../../ViewComponents/ContactView/EmailView/EmailView";
 import ObservationView from "../../ViewComponents/ContactView/ObservationView/ObservationView";
+import SocialMediaView from "../../ViewComponents/ContactView/SocialMediaView/SocialMediaView";
 
 
 export default function MainViewComponent(props) {
@@ -40,6 +41,8 @@ export default function MainViewComponent(props) {
                 return <EmailView target={props.target} camera={props.camera} />
             case 'observationView':
                 return <ObservationView target={props.target} camera={props.camera} />
+            case 'socialMediaView':
+                return <SocialMediaView target={props.target} camera={props.camera} />
             case 'musicView':
                 return
             default:

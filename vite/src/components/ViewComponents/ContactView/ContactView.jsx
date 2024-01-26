@@ -24,13 +24,21 @@ export default function ContactView(props) {
 
   const contactViewContainerStyles = styles().contactViewContainerStyles;
 
+  //Function to change places of the Active and Unactive ZombieHand model:
+  //Both Active and Unactive ZombieHand models have been added to the global window object.
+  //So they can both be accessed as global variables.
+  function switchZombieHandPlaces() {
+    zombieHandUnactive.position.y = 0;
+    zombieHandActive.position.y = 2.75;
+  };
+
   return (
     <div style={{ paddingLeft: '8%', paddingTop: '8%', opacity: '0.25', width: '100%', height: '100%', backgroundColor: '', display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', gap: '2%' }}>
       <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'shotgun', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('SG') }}></Button>
       <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '45%', height: '30%' }} onClick={() => { cameraTween(props.camera, props.target, 'mrFrogPhoto', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('MFP') }}></Button>
       <div style={{ backgroundColor: '', order: '1px solid white', width: '45%', height: '30%', display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center', gap: '0%' }}>
         <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '65%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'laptop', setIsTweenFinished); setViewState('emailView') }} />
-        <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '35%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'zombieHand', setIsTweenFinished); setViewState('observationView'), setSelectedQuestion('ZH') }} />
+        <Button sx={{ backgroundColor: '', '&:hover': { backgroundColor: 'lightBlue' }, border: '1px solid white', width: '35%', height: '100%' }} onClick={() => { cameraTween(props.camera, props.target, 'zombieHand', setIsTweenFinished); setViewState('socialMediaView'); setSelectedQuestion('ZH'); switchZombieHandPlaces() }} />
       </div>
     </div>
   )

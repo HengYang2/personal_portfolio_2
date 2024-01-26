@@ -272,6 +272,10 @@ gltfLoader.load('/hengsRoomModel.gltf', (gltfscene) => {
   window.project4 = scene.getObjectByName("Scene").getObjectByName("project4");
   window.project5 = scene.getObjectByName("Scene").getObjectByName("project5");
 
+  //Add ZombieHandActive and ZombieHandInactive models to the window object
+  window.zombieHandActive = scene.getObjectByName("Scene").getObjectByName("ZombieHandActive");
+  window.zombieHandUnactive = scene.getObjectByName("Scene").getObjectByName("ZombieHandUnactive");
+
   gltfscene.scene.position.set(0, 1, 0)
   // gltfscene.scene.castShadow.valueOf(5)
 
