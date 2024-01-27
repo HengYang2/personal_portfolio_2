@@ -8,6 +8,11 @@ import styles from "../../../styles/styles"
 import DialogBox from '../../DialogComponents/DialogBox/DialogBox'
 import TechStackView from "../../ViewComponents/TechStackView/TechStackView";
 import ProjectView from "../../ViewComponents/ProjectView/ProjectView";
+import ContactView from '../../ViewComponents/ContactView/ContactView';
+import EmailView from "../../ViewComponents/ContactView/EmailView/EmailView";
+import ObservationView from "../../ViewComponents/ContactView/ObservationView/ObservationView";
+import SocialMediaView from "../../ViewComponents/ContactView/SocialMediaView/SocialMediaView";
+
 
 export default function MainViewComponent(props) {
     //styles
@@ -26,10 +31,18 @@ export default function MainViewComponent(props) {
                 return <></>
             case 'projectView':
                 return <ProjectView target={props.target} camera={props.camera} />
+            case 'trophyModalView':
+                return <ProjectView target={props.target} camera={props.camera} />
             case 'techStackView':
                 return <TechStackView target={props.target} camera={props.camera} />
             case 'contactView':
-                return
+                return <ContactView target={props.target} camera={props.camera} />
+            case 'emailView':
+                return <EmailView target={props.target} camera={props.camera} />
+            case 'observationView':
+                return <ObservationView target={props.target} camera={props.camera} />
+            case 'socialMediaView':
+                return <SocialMediaView target={props.target} camera={props.camera} />
             case 'musicView':
                 return
             default:
@@ -40,7 +53,7 @@ export default function MainViewComponent(props) {
     //Function to toggle if the dialogWindow div should be opened or not
     //If viewState reducer is equal to a certain '' then don't render it:
     function conditionalRenderDialogWindow(state) {
-        if (state == '') {
+        if (state == '' || state == 'emailView' || state == 'trophyModalView') {
             return <></>
         } else {
             return (
@@ -55,9 +68,6 @@ export default function MainViewComponent(props) {
     useEffect(() => {
         setCurrentViewState(viewStateReducer);
     }, [viewStateReducer])
-
-
-
 
 
     return (

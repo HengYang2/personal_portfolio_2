@@ -139,7 +139,25 @@ export default function responseModule(selectedQuestion) {
 
         case 'GIT0':
             return ({
-                dialogSequence: ['This desk and and macbook were modeled after real objects, that the real life me uses.', 'Click on my macbook and you will be able to send an email to the real me! ', 'Any other questions?'],
+                dialogSequence: ['This desk and and macbook were modeled after real objects, that the real life me uses.', 'Click on my macbook and you will be able to send an email to the real me! '],
+                isFollowUpQuestion: false,
+                followUpQuestionCode: null,
+            });
+        case 'SG':
+            return ({
+                dialogSequence: ['This is my sg', 'Click on my macbook and you will be able to send an email to the real me! '],
+                isFollowUpQuestion: false,
+                followUpQuestionCode: null,
+            });
+        case 'MFP':
+            return ({
+                dialogSequence: ['This is mr frog', 'Click on my macbook and you will be able to send an email to the real me! '],
+                isFollowUpQuestion: false,
+                followUpQuestionCode: null,
+            });
+        case 'ZH':
+            return ({
+                dialogSequence: ['This is a zombie hand', 'Click on my macbook and you will be able to send an email to the real me! '],
                 isFollowUpQuestion: false,
                 followUpQuestionCode: null,
             });

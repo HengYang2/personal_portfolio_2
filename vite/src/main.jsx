@@ -57,6 +57,8 @@ for (let i=0; i<6; i++) {
 let skyboxGeo = new THREE.BoxGeometry(400,400,500)
 const skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
+skybox.position.set(0,12,0);
+
 scene.add(skybox);
 scene.backgroundIntensity = 0;
 
@@ -269,6 +271,10 @@ gltfLoader.load('/hengsRoomModel.gltf', (gltfscene) => {
   window.project3 = scene.getObjectByName("Scene").getObjectByName("project3");
   window.project4 = scene.getObjectByName("Scene").getObjectByName("project4");
   window.project5 = scene.getObjectByName("Scene").getObjectByName("project5");
+
+  //Add ZombieHandActive and ZombieHandInactive models to the window object
+  window.zombieHandActive = scene.getObjectByName("Scene").getObjectByName("ZombieHandActive");
+  window.zombieHandUnactive = scene.getObjectByName("Scene").getObjectByName("ZombieHandUnactive");
 
   gltfscene.scene.position.set(0, 1, 0)
   // gltfscene.scene.castShadow.valueOf(5)
