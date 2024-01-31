@@ -12,7 +12,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 //redux
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from './redux/store.js';
 import { render } from 'react-dom'
 
 

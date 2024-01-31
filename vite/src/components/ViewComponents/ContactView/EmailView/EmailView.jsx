@@ -8,6 +8,7 @@ import cameraTween from '../../../../tween/cameraTween';
 
 //Import div styles:
 import styles from '../../../../styles/styles';
+import EmailForm from './EmailForm/EmailForm';
 
 const EmailView = (props) => {
 
@@ -32,14 +33,13 @@ const EmailView = (props) => {
         setOpen(false);
     };
 
-    //UseState for managing which project I'm on:
-    // const [modalInformation, setModalInformation] = useState(projectModalInfo(props.projectName))
-    // const [projectNumber, setProjectNumber] = useState(projectModalInfo(props.projectName).orderNumber)
 
     useEffect(() => {
         handleOpen()
     }, [])
 
+
+    
     return (
         <div>
             <div onClick={() => { handleOpen(); }}></div>
@@ -57,7 +57,7 @@ const EmailView = (props) => {
             >
                 <div style={emailModalContainerStyles}>
                     <Button sx={{ bgcolor: 'green', }} onClick={() => { handleClose(); cameraTween(props.camera, props.target, 'desk', setIsTweenFinished); setViewState('contactView') }} ><CloseIcon /></Button>
-
+                    <EmailForm/>
                 </div>
             </Modal>
         </div>
