@@ -10,6 +10,8 @@ export default function EmailForm() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
+  //Function for handling submit by making axios call to the server to have the server make a http request to EmailJs API
+  //To handle the sending of the email.
   const handleSubmit = async (e) => {
     e.preventDefault();
 
