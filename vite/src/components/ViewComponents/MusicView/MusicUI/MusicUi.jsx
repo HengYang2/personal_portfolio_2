@@ -28,6 +28,7 @@ const MusicUI = (props) => {
   // const imgStyles = styles().trophyStyles.modals.img;
   // const textFrameStyles = styles().trophyStyles.modals.textFrame;
 
+  //useState to keep track of the open state of the modal.
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -57,7 +58,7 @@ const MusicUI = (props) => {
             setViewState('projectView');
           },
         }}
-        sx={{ bgcolor: '', width: '100%', height: '100%', position: 'absolute', padding: '0%', display: 'block' }}
+        sx={{ bgcolor: 'greem', width: '100%', height: '100%', position: 'absolute', padding: '0%', display: 'block' }}
       >
         <div style={modalContainerStyles}>
         </div>
