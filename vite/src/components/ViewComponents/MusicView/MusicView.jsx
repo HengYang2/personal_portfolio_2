@@ -21,64 +21,6 @@ import useTypingEffect from '../../../hooks/typingEffect';
 
 export default function MusicView() {
 
-  const selectedQuestionReducer = useSelector(store => store.selectedQuestionReducer)
-
-  //UseState for toggling talking options:
-  const [questionsVisible, setQuestionsVisible] = useState(false)
-  const [textCollection, setTextCollection] = useState(responseModule(selectedQuestionReducer));
-  const [collectionIndex, setCollectionIndex] = useState(0);
-
-  //Continue text indicator and click blocker useStates:
-  const [indicatorVisible, setIndicatorVisible] = useState(false);
-  const [clickBlockerDiv, setClickBlockerDiv] = useState(false);
-
-  //Text parameters:
-  const defaultTextSpeedValue = 25
-  const spedUpTextSpeedValue = 0.0005
-  const [textSpeed, setTextSpeed] = useState(defaultTextSpeedValue);
-
-  const text = useTypingEffect(textCollection, collectionIndex, textSpeed, setIndicatorVisible, setQuestionsVisible, setClickBlockerDiv)
-
-  //Whenever there is a change in the selectedQuestionReducer, the setTextCollection will get the new list of text to be generated based on the selectedQuestionReducer
-  useEffect(() => {
-    if (questionsVisible == false) {
-      setTextCollection(responseModule(selectedQuestionReducer))
-      setCollectionIndex(0)
-      setTextSpeed(defaultTextSpeedValue)
-    } else {
-      return
-    }
-  }, [selectedQuestionReducer, questionsVisible])
-
-
-  //This function is used to continue the text to the next set of lines to be generated after the user has finished reading.
-  //If the user clicks the div while the text is still being generated, when the indicator isn't showing, it will increase the speed at which the text will be generated.
-  function nextText() {
-    if (indicatorVisible == true) {
-      console.log("Speed set to 25");
-      if (collectionIndex != textCollection.length - 1) {
-        setCollectionIndex(collectionIndex + 1)
-      }
-      setIndicatorVisible(false)
-      setTextSpeed(defaultTextSpeedValue)
-    } else {
-      console.log("Speed set to 0.0005");
-      setTextSpeed(spedUpTextSpeedValue)
-    }
-  }
-
-
-  //Conditionally render the 'click to continue' button or the TextPopper component base on if more text needs to be generated or if the questions list needs to pop up.
-  function RenderIndicatorOrPopper() {
-    if (indicatorVisible == true) {
-      return <NextTextIndicator nextText={nextText} />
-    } else if (questionsVisible == true) {
-      return <TextPopper setQuestionsVisible={setQuestionsVisible} />
-    } else {
-      return <></>
-    }
-  }
-
   return (
     <Container maxWidth={false} sx={{ margin: '0%', padding: '0%', bgcolor: '', height: '100%', position: 'absolute', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0%', pointerEvents: 'auto' }}>
       <Paper variant='outlined' sx={{ bgcolor: 'grey', height: '25%', width: '65%', position: 'absolute', marginTop: '34%' }}>
